@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900");
+
+.App {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  background-color: #1e1e1e;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothng: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #fff;
+  font-weight: 700;
+}
+
+ul {
+  margin-bottom: 0;
+}
+
+p {
+  font-size: 14px;
+  line-height: 30px;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.container {
+  padding: 20px;
+  margin: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+  display: flex;
+  flex-direction: column;
+  background-color: #27292a;
+  border-radius: 15px;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+footer {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+footer {
+  display: block;
+
+  p {
+    text-align: center;
+    padding: 30px 0px;
+    color: #fff;
+    font-weight: 300;
+  }
+
+  p a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  p a:hover {
+    color: #ec6090;
+  }
+}

@@ -1,0 +1,143 @@
+.navbar {
+  width: 100%;
+  height: 100px;
+  background-color: #1f2122;
+  display: flex;
+  flex-direction: row;
+  
+  a {
+    color: #666;
+    text-decoration: none;
+    margin: 20px;
+
+    &:hover {
+      color: #e75e8d;
+    }
+  }
+
+  .active {
+    color: #e75e8d;
+  }
+
+  #open {
+    padding-left: 30px;
+
+    a {
+      width: 70px;
+      margin: 5px;
+    }
+
+    img, #search {
+      display: none;
+    }
+
+    .hiddenLinks {
+      display: inherit;
+      margin-left: 0px;
+    }
+  }
+
+  #close {
+    img {
+      display: inherit;
+    }
+
+    .hiddenLinks {
+      display: none;
+    }
+  }
+}
+
+.navbar .leftSide {
+  flex: 50%;
+  gap: 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+
+  img {
+    width: 150px;
+    cursor: pointer;
+  }
+
+  #search {
+    position: relative;
+
+    input {
+      background-color: #27292a;
+      width: 200px;
+      height: 30px;
+      border-radius: 30px;
+      border: none;
+      color: #666;
+      font-size: 14px;
+      padding: 0 10px 0 35px;
+    }
+
+    i {
+      position: absolute;
+      color: #666;
+      left: 20px;
+      top: 10px;
+      width: 15px;
+      height: 15px;
+      font-size: 16px;
+    }
+  }
+}
+
+.navbar .rightSide {
+  flex: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-right: 30px;
+
+  button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  svg {
+    font-size: 40px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .navbar .rightSide a {
+    width: 70px;
+  }
+
+  .navbar .leftSide {
+    padding-left: 10px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar .rightSide a {
+    display: none;
+  }
+
+  .navbar .rightSide {
+    justify-content: flex-end;
+    padding-right: 20px;
+  }
+
+  .navbar .rightSide button {
+    display: inherit;
+  }
+}
+
+@media only screen and (min-width: 600px){
+  .navbar .rightSide button {
+    display: none;
+  }
+
+  .hiddenLinks {
+    display: none;
+  }
+}
