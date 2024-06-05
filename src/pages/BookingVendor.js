@@ -37,13 +37,14 @@ function BookingVendor() {
       )}
 
       <div className='map-and-book'>
-        {vendor ? (
-          <div className='vendor-map' id='vendorMap'>
+        <div className='vendor-map' id='vendorMap'>
+          {vendor && !(vendor.map === "") ? (
             <iframe src={vendor.map} title={vendor.name} width='100%' height='100%' style={{ border: 0 }} allowFullScreen='' loading='lazy'></iframe>
-          </div>
-        ) : (
-          <p></p>
-        )}
+          
+          ) : (
+          <p>Map not available</p>
+          )}
+        </div>
 
         <div className='booking-form'>
           <h3>Book Now</h3>

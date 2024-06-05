@@ -20,7 +20,7 @@ export const VendorProvider = ({ children }) => {
 
   const addVendor = async (vendor) => {
     try {
-      const response = await axios.post("http://localhost:5000/vendors", vendor);
+      const response = await axios.post("http://localhost:5000/vendors/register", vendor);
       setVendors([...vendors, response.data]);
     } catch (error) {
       console.error("Error adding vendor", error);

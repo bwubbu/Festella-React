@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
   res.json(vendors);
 });
 
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
   try {
     const vendor = new Vendor(req.body);
     await vendor.save();
