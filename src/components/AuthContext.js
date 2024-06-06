@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
       }
     };
     fetchUser();
-  });
+  }, []);
 
   const register = async (user) => {
     try {
@@ -49,12 +49,21 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const editProfile = async (user) => {
+    try {
+      const response = await axios.put('http://localhost:5000/user/edit', user, { withCredentials: true });
+      setUser(response.data);
+    } catch (error) {
+      console.error('Error editing profile', error);
+    }
+  }
+
   const changeAuthState = (value) => {
     setIsAuthenticated(value);
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, register, login, logout, changeAuthState }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, register, login, logout, editProfile, changeAuthState }}>
       {children}
     </AuthContext.Provider>
   );

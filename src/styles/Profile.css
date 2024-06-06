@@ -1,354 +1,84 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900");
-
-
-::selection {
-  background: #e75e8d;
-  color: #fff;
-}
-
-::-moz-selection {
-  background: #e75e8d;
-  color: #fff;
-}
-
-.templatemo-item {
-	max-width: 80px; 
-	border-radius: 23px;
-}
-
-.main-button a {
-  font-size: 14px;
-  color: #fff;
-  background-color: #e75e8d;
-  padding: 12px 30px;
-  display: inline-block;
-  border-radius: 25px;
-  font-weight: 400;
-  text-transform: capitalize;
-  letter-spacing: 0.5px;
-  transition: all .3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.main-button a:hover {
-  background-color: #fff;
-  color: #e75e8d;
-}
-
-.main-border-button a {
-  font-size: 14px;
-  color: #ec6090;
-  background-color: transparent;
-  border: 1px solid #ec6090;
-  padding: 12px 30px;
-  display: inline-block;
-  border-radius: 25px;
-  font-weight: 400;
-  text-decoration: none;
-  text-transform: capitalize;
-  letter-spacing: 0.5px;
-  transition: all .3s;
-  position: relative;
-  overflow: hidden;
-}
-.side-by-side-buttons {
-  text-align: center; /* Center the buttons horizontally */
-}
-.side-by-side-buttons .main-border-button {
-  display: inline-block;
-  margin-right: 10px; /* Adjust the spacing between the buttons */
-  width: 48%;
-}
-.main-border-button a:hover {
-  border-color: #fff;
-  background-color: #fff;
-  color: #e75e8d;
-}
-
-.border-no-active a {
-  border-color: #666;
-  color: #666;
-}
-
-.border-no-active a:hover{
-  border-color: #666;
-  color: #666;
-  background-color: transparent;
-}
-
-section {
-  margin-top: 120px;
-}
-
-.heading-section h4 {
-  color: #ec6090;
-  font-size: 34px;
-  text-decoration: none;
-  margin-bottom: 30px;
-}
-
-.heading-section h4 em {
-  color: #fff;
-  font-style: normal;
-  text-decoration: none;
-}
-
-footer p {
-  text-align: center;
-  padding: 30px 0px;
-  color: #fff;
-  font-weight: 300;
-}
-
-footer p a {
-  color: #fff;
-  transition: all .3s;
-}
-
-footer p a:hover {
-  color: #ec6090;
-}
-
-/* 
----------------------------------------------
-Profile Style
---------------------------------------------- 
-*/
-
-.main-profile {
-  border-radius: 23px;
-  padding: 30px;
+.profile-container {
   background-color: #1f2122;
-}
-
-.main-profile .main-info span {
-  font-size: 14px;
-  color: #fff;
-  background-color: #e75e8d;
-  padding: 8px 20px;
-  display: inline-block;
-  border-radius: 25px;
-  font-weight: 400;
-  text-transform: capitalize;
-  letter-spacing: 0.5px;
-  margin-bottom: 15px;
-}
-
-.main-profile .main-info h4 {
-  margin-bottom: 20px;
-}
-
-.main-profile .main-info .main-border-button {
-  margin-top: 25px;
-}
-
-.main-profile ul {
-  border-radius: 23px;
-  padding: 5px;
-  background-color: #27292a;
-}
-
-.main-profile ul li {
-  width: 100%;
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 5px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #666;
-}
-
-.main-profile ul li span {
-  float: right;
-  font-weight: 500;
-  color: #ec6090;
-}
-
-.main-profile ul li:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-
-.clips {
-  margin-top: 30px;
-  border-top: 2px solid #27292a;
-}
-
-.clips .heading-section {
-  margin-top: 30px;
-}
-
-.clips .item  {
-  border-radius: 23px;
-  padding: 30px 15px;
-  background-color: #27292a;
-  margin-bottom: 30px;
-}
-
-.clips .item .thumb {
-  position: relative;
-  margin-bottom: 15px;
-}
-
-.clips .item .thumb a {
-  position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-23px, -23px);
-    width: 46px;
-    height: 46px;
-    background-color: #fff;
-    border-radius: 50%;
-    display: inline-block;
-    text-align: center;
-    line-height: 46px;
-    color: #ec6090;
-}
-
-.clips .item h4 {
-  font-size: 15px;
-  display: inline-block;
-}
-
-.clips .item span i {
-  color: #ec6090;
-}
-
-.clips .item span {
-  float: right;
-  color: #fff;
-  font-size: 14px;
-}
-
-.clips .main-button {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.truncate-text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 9em; /* Adjust as needed */
-}
-
-/* Body */
-.body {
-  display: flex;
-  background-color: #131415;
-  padding: 10px;
-  margin-top: 5px;
-}
-
-.body .authors .username {
-  font-size: 20px;
-}
-
-.body .authors img {
-  max-width: 50px;
-  max-height: 80px;
-}
-
-.event-list {
-  margin-top: 20px;
-}
-
-.event-list h2,
-.invite-users h2 {
-  color: #FEFEFE;
-}
-
-.event-list ul,
-.invite-users form {
-  margin-bottom: 20px;
-}
-
-.event-list ul li {
-  color: #FEFEFE;
-  margin-bottom: 10px;
-}
-
-#add-event-btn,
-#invite-form button {
-  background-color: #e75e8d;
-  color: #FEFEFE;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.icon-image {
-  width: 20px; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
-  margin-right: 10px; /* Adjust the spacing between the image and text */
-}
-
-/* Style for the modal content */
-.modal-content {
-  background-color: #27292a;
-  margin: auto; /* Center the modal horizontally */
+  border-radius: 10px;
   padding: 20px;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  border-radius: 30px;
-  width: auto; /* Adjust the width as needed */
-  max-width: 600px; /* Maximum width */
-  position: absolute; /* Position absolute for vertical centering */
-  top: 50%; /* Move the modal 50% from the top */
-  left: 50%; /* Move the modal 50% from the left */
-  transform: translate(-50%, -50%); /* Center the modal both vertically and horizontally */
-  
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-}
-.image-container {
-  display: inline-block;
-  margin-right: 10px; /* Adjust margin as needed */
-}
-.clickable-image {
-  width: 100px; /* Set the desired width */
-  height: 100px; /* Set the desired height */
+
+  .profile-and-events {
+    display: grid;
+    grid-template-columns: 1fr 0.25fr;
+    gap: 20px;
+
+    .profile-and-registered-events, .bookmarked-events {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .profile-and-registered-events {
+      gap: 20px;
+
+      .profile {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        .profile-picture {
+          display: flex;
+          flex-direction: column;
+          width: 200px;
+          align-items: center;
+
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            margin-bottom: 20px;
+          }
+
+          .edit-profile {
+            width: 80%;
+          }
+        }
+
+        .profile-info {
+          margin-bottom: 50px;
+          
+          p {
+            margin: 0;
+            font-size: 1.2em;
+          }
+
+          h2 {
+            margin: 0;
+            font-size: 3em;
+          }
+        }
+      }
+    }
+  }
 }
 
+.registered-events, .bookmarked-events {
+  .title {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
 
-/* Style for the close button */
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  color: #fff;
+    .coloured-font {
+      color: #e75e8d;
+      margin-right: 5px;
+    }
+
+    h2 {
+      margin: 0;
+    }
+  }
 }
 
-/* Style for profile name */
-.profile-name {
-  margin: 0;
-  color: #FEFEFE;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-
-/* Disable clicking for the button with class "border-no-active" */
-.border-no-active a {
-  border-color: #666;
-  color: #666;
-  pointer-events: none; /* Disable pointer events */
-}
-
-/* Optional: Adjust appearance for the disabled button on hover */
-.border-no-active a:hover{
-  border-color: #666;
-  color: #666;
-  background-color: transparent;
-}
-
-.profile-picture {
-  border-radius: 50%;
-  width: 300px;
-  height: 300px;
+.registered-events-container, .bookmarked-events-container {
+  width: 100%;
+  background-color: #2c2c2c;
+  border-radius: 10px;
+  padding: 20px;
+  flex: 1;
 }

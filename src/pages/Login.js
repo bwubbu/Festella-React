@@ -10,7 +10,7 @@ import axios from 'axios';
 
 function Login() {
   const containerRef = useRef(null);
-  const { changeAuthState } = useAuth();
+  const { login, register, changeAuthState } = useAuth();
 
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
@@ -36,7 +36,8 @@ function Login() {
     e.preventDefault();
     console.log(loginData);
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, loginData, { withCredentials: true });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, loginData, { withCredentials: true });
+      login(response.data);
       alert('Login successful');
       changeAuthState(true);
       navigate('/');
@@ -48,7 +49,8 @@ function Login() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/user/register`, registerData, { withCredentials: true });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/user/register`, registerData, { withCredentials: true });
+      register(response.data);
       alert('User registered successfully');
       changeAuthState(true);
       navigate('/');
