@@ -29,10 +29,19 @@ function RegisterVendor() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleImage =(e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setFormData(prev => ({ ...prev, image: reader.result }));
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/vendors`, formData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/vendors/register`, formData);
       addVendor(response.data);
       alert('Vendor registered successfully');
       navigate('/vendor');
@@ -92,8 +101,12 @@ function RegisterVendor() {
             </div>
             <div>
               <label htmlFor='vendorImage'>Business Image</label>
-              <input type='file' id='vendorImage' name='image' placeholder='Business Image' onChange={handleChange} />
+              <input type='file' id='vendorImage' name='image' placeholder='Business Image' onChange={handleImage} />
             </div>
+          </div>
+          <div>
+            <label htmlFor="vendorBAddress">Business Address</label>
+            <textarea id="vendorBAddress" name='businessAddress' placeholder="Address" required value={formData.businessaddress} onChange={handleChange}></textarea>
           </div>
           <div>
             <label htmlFor="vendorService">Service</label>

@@ -43,7 +43,13 @@ button,
 }
 
 .vendor-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+#popularVendors {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .vendor-card {
@@ -120,10 +126,6 @@ button,
       transition: opacity 0.5s 0.1s ease-out;
     }
   }
-}
-
-.vendor-card+.vendor-card {
-  margin-left: 20px;
 }
 
 /* Search Vendor */
@@ -210,16 +212,19 @@ button,
 
   .agreement {
     display: flex;
-    align-items: center center;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     margin-bottom: 15px;
 
     input {
-      width: auto;
+      width: 15px;
+      height: 15px;
     }
 
     label {
-      margin-left: 10px;
       color: #ddd;
+      margin-bottom: 15px;
     }
   }
 
@@ -292,6 +297,10 @@ button,
   padding: 20px;
   border-radius: 20px;
   position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   iframe {
     border-radius: 10px;
