@@ -9,22 +9,34 @@ router.get('/', async (req, res) => {
     res.json(users);
 });
 
-router.post('/register', async (req, res) => {
-    bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-        const newUser = new User({
-            username: req.body.username,
-            email: req.body.email,
-            password: hash,
-        });
+router.post('/login', async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.body.username });
+        if (!user) {
+            return res.status(400).json({ message: 'User not found' });
+        }
 
-        newUser.save((err) => {
-            if (err) {
-                res.status(500).send(err);
-            } else {
-                res.status(200).send('User registered successfully!');
-            }
-        });
-    });
+        if (await bcrypt.compare(req.body.password, user.password)) {
+            res.send('Login successful');
+            res.status(201).json(user);
+        } else {
+            res.send('Login failed');
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+router.post('/register', async (req, res) => {
+    try {
+        const { username, email, password } = req.body;
+        const hash = await bcrypt.hash(password, saltRounds);
+        const user = new User({ username, email, password: hash });
+        await user.save();
+        res.status(201).json(user);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
 module.exports = router;

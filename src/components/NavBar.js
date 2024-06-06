@@ -3,11 +3,10 @@ import logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
 import "../styles/NavBar.css";
 import ReorderIcon from "@mui/icons-material/Reorder";
-import { useContext } from "react";
-import { AuthContext } from "./AuthContext";
+import { useAuth } from "./AuthContext";
 
 function NavBar() {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useAuth();
   const [openLinks, setOpenLinks] = useState(false);
 
   const toggleNavbar = () => {
@@ -50,11 +49,7 @@ function NavBar() {
           Vendor
         </NavLink>
         {isAuthenticated ? (
-          <NavLink
-            to="/Profile"
-            className="profile-border-button"
-            activeclassname="active"
-          >
+          <NavLink to="/Profile" className="profile-border-button" activeclassname="active">
             Profile
           </NavLink>
         ) : (

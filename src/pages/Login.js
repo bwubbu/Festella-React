@@ -1,48 +1,61 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import '../styles/Login.css';
 import '../App.css';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../components/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../components/AuthContext';
 import axios from 'axios';
 
 function Login() {
-  const navigate = useNavigate();
-  const { setIsAuthenticated } = useContext(AuthContext);
-
-  const handleLogin = () => {
-    // Perform login operation...
-
-    // If login is successful, set isAuthenticated to true
-    setIsAuthenticated(true);
-
-    // Navigate to the homepage
-    navigate('/');
-  };
-
   const containerRef = useRef(null);
+  const { changeAuthState } = useAuth();
 
-// Function to check if passwords are identical
-  const arePasswordsIdentical = (password, confirmPassword) => {
-    return password === confirmPassword;
-  };
+  const navigate = useNavigate();
+  const [loginData, setLoginData] = useState({
+    username: '',
+    password: '',
+  });
+  const [registerData, setRegisterData] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
 
-  const validateEmail = (email) => {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  };
-
-  const handleInputChange = (e) => {
+  const handleLoginChange = (e) => {
     const { name, value } = e.target;
-    setRegisterUser((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+    setLoginData(prev => ({ ...prev, [name]: value }));
+  };
+  const handleRegisterChange = (e) => {
+    const { name, value } = e.target;
+    setRegisterData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    console.log(loginData);
+    try {
+      await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, loginData, { withCredentials: true });
+      alert('Login successful');
+      changeAuthState(true);
+      navigate('/');
+    } catch (error) {
+      console.error('Error logging in user', error);
+      alert('Failed to login. Please try again.');
+    }
+  };
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(`${process.env.REACT_APP_API_URL}/user/register`, registerData, { withCredentials: true });
+      alert('User registered successfully');
+      changeAuthState(true);
+      navigate('/');
+    } catch (error) {
+      console.error('Error registering user', error);
+      alert('Failed to register user. Please try again.');
+    }
   };
 
   useEffect(() => {
@@ -58,63 +71,43 @@ function Login() {
     });
   }, []);
 
-  const [registerUser, setRegisterUser] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
-  const { register } = useContext(AuthContext);
-
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/user/register`, registerUser);
-      register(response.data);
-      alert('User registered successfully');
-      navigate('/');
-    } catch (error) {
-      console.error('Error registering user', error);
-      alert('Failed to register user. Please try again.');
-    }
-  };
-
   return (
     <div className='page-content'>
       <div className='page-container' ref={containerRef}>
         <div className='forms-container'>
           <div className='signin-signup'>
-            <form action="#" className="sign-in-form">
+            <form action="#" className="sign-in-form" onSubmit={handleLogin}>
               <h1 className="title">Sign in</h1>
               <div className="input-field">
                 <FontAwesomeIcon className="icon" icon={faUser} color="black"/>
-                <input type="text" placeholder="Username" name="username" required onChange={handleInputChange} />
+                <input type="text" placeholder="Username" name="username" required onChange={handleLoginChange} />
               </div>
               <div className="input-field">
                 <FontAwesomeIcon icon={faLock} color="black"/>
-                <input type="password" placeholder="Password" name="password" required onChange={handleInputChange} />
+                <input type="password" placeholder="Password" name="password" required onChange={handleLoginChange} />
               </div>
               <p className="forgot-password">
                 <Link to="/profile/forgotpassword">Forgot Password?</Link>
               </p>
-              <input type="submit" value="Login" className="btn solid" onClick={handleLogin} />
+              <input type="submit" value="Login" className="btn solid" />
             </form>
             <form action="#" className="sign-up-form" onSubmit={handleRegister}>
               <h1 className="title">Sign up</h1>
               <div className="input-field">
                 <FontAwesomeIcon icon={faUser} color="black"/>
-                <input type="text" placeholder="Username" name="username" required onChange={handleInputChange} />
+                <input type="text" placeholder="Username" name="username" required onChange={handleRegisterChange} />
               </div>
               <div className="input-field">
                 <FontAwesomeIcon icon={faEnvelope} color="black"/>
-                <input type="email" placeholder="Email" name="email" required onChange={handleInputChange} />
+                <input type="email" placeholder="Email" name="email" required onChange={handleRegisterChange} />
               </div>
               <div className="input-field">
                 <FontAwesomeIcon icon={faLock} color="black"/>
-                <input type="password" placeholder="Password" name="password" required onChange={handleInputChange} />
+                <input type="password" placeholder="Password" name="password" required onChange={handleRegisterChange} />
               </div>
               <div className="input-field">
                 <FontAwesomeIcon icon={faLock} color="black"/>
-                <input type="password" placeholder="Confirm Password" name="password" required onChange={handleInputChange} />
+                <input type="password" placeholder="Confirm Password" name="password" required onChange={handleRegisterChange} />
               </div>
               <button type="submit" className="btn">Sign up</button>
             </form>
