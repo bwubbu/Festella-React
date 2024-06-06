@@ -1,17 +1,34 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import '../styles/Login.css';
 import '../App.css';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../components/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
+  const navigate = useNavigate();
+  const { setIsAuthenticated } = useContext(AuthContext);
+
+  const handleLogin = () => {
+    // Perform login operation...
+
+    // If login is successful, set isAuthenticated to true
+    setIsAuthenticated(true);
+
+    // Navigate to the homepage
+    navigate('/');
+  };
+
   const containerRef = useRef(null);
 
 // Function to check if passwords are identical
-const arePasswordsIdentical = (password, confirmPassword) => {
-  return password === confirmPassword;
-};
+  const arePasswordsIdentical = (password, confirmPassword) => {
+    return password === confirmPassword;
+  };
 
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -20,17 +37,12 @@ const arePasswordsIdentical = (password, confirmPassword) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'password' || name === 'confirmPassword') {
-      /*if (!arePasswordsIdentical(password, confirmPassword)) {
-        // Passwords are not identical
-        // Handle this case here
-      } else {
-        // Passwords are identical
-        // Handle this case here
-      }*/
-    } else if (value.trim() === '') {
-      // Handle empty input case here
-    }
+    setRegisterUser((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
 
   useEffect(() => {
@@ -45,6 +57,26 @@ const arePasswordsIdentical = (password, confirmPassword) => {
       containerRef.current.classList.add('sign-up-mode');
     });
   }, []);
+
+  const [registerUser, setRegisterUser] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+  const { register } = useContext(AuthContext);
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/user/register`, registerUser);
+      register(response.data);
+      alert('User registered successfully');
+      navigate('/');
+    } catch (error) {
+      console.error('Error registering user', error);
+      alert('Failed to register user. Please try again.');
+    }
+  };
 
   return (
     <div className='page-content'>
@@ -64,9 +96,9 @@ const arePasswordsIdentical = (password, confirmPassword) => {
               <p className="forgot-password">
                 <Link to="/profile/forgotpassword">Forgot Password?</Link>
               </p>
-              <input type="submit" value="Login" className="btn solid" />
+              <input type="submit" value="Login" className="btn solid" onClick={handleLogin} />
             </form>
-            <form action="#" className="sign-up-form">
+            <form action="#" className="sign-up-form" onSubmit={handleRegister}>
               <h1 className="title">Sign up</h1>
               <div className="input-field">
                 <FontAwesomeIcon icon={faUser} color="black"/>
@@ -84,7 +116,7 @@ const arePasswordsIdentical = (password, confirmPassword) => {
                 <FontAwesomeIcon icon={faLock} color="black"/>
                 <input type="password" placeholder="Confirm Password" name="password" required onChange={handleInputChange} />
               </div>
-              <input type="submit" className="btn" value="Sign up" />
+              <button type="submit" className="btn">Sign up</button>
             </form>
           </div>
         </div>
