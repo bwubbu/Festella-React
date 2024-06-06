@@ -23,12 +23,14 @@ function NavBar() {
           <NavLink exact="true" to="/" activeclassname="active">Home</NavLink>
           <NavLink to="/vendor" activeclassname="active">Vendor</NavLink>
           <NavLink to='/login' activeclassname="active">Sign In</NavLink>
+          <NavLink to='/Profile' activeclassname="active">Profile</NavLink>
         </div>
       </div>
       <div className='rightSide'>
         <NavLink exact="true" to="/" activeclassname="active">Home</NavLink>
         <NavLink to="/vendor" activeclassname="active">Vendor</NavLink>
         <NavLink to='/login' activeclassname="active">Sign In</NavLink>
+        <NavLink to='/Profile' activeclassname="active">Profile</NavLink>
         <button onClick={toggleNavbar}><ReorderIcon /></button>
       </div>
     </div>

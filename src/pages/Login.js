@@ -3,9 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import '../styles/Login.css';
 import '../App.css';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const containerRef = useRef(null);
+
+// Function to check if passwords are identical
+const arePasswordsIdentical = (password, confirmPassword) => {
+  return password === confirmPassword;
+};
 
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -14,14 +20,16 @@ function Login() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'email') {
-      if (!validateEmail(value)) {
-        
+    if (name === 'password' || name === 'confirmPassword') {
+      /*if (!arePasswordsIdentical(password, confirmPassword)) {
+        // Passwords are not identical
+        // Handle this case here
       } else {
-        
-      }
+        // Passwords are identical
+        // Handle this case here
+      }*/
     } else if (value.trim() === '') {
-      
+      // Handle empty input case here
     }
   };
 
@@ -54,7 +62,7 @@ function Login() {
                 <input type="password" placeholder="Password" name="password" required onChange={handleInputChange} />
               </div>
               <p className="forgot-password">
-                <a href="#">Forgot Password?</a>
+                <Link to="/profile/forgotpassword">Forgot Password?</Link>
               </p>
               <input type="submit" value="Login" className="btn solid" />
             </form>
@@ -72,6 +80,10 @@ function Login() {
                 <FontAwesomeIcon icon={faLock} color="black"/>
                 <input type="password" placeholder="Password" name="password" required onChange={handleInputChange} />
               </div>
+              <div className="input-field">
+                <FontAwesomeIcon icon={faLock} color="black"/>
+                <input type="password" placeholder="Confirm Password" name="password" required onChange={handleInputChange} />
+              </div>
               <input type="submit" className="btn" value="Sign up" />
             </form>
           </div>
@@ -81,8 +93,9 @@ function Login() {
             <div className="content">
               <h3>New here ?</h3>
               <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-                ex ratione. Aliquid!
+                Register Now To Unlock All Features Of Our Website!
+                <br />
+                We're Excited To Have You!
               </p>
               <button className="btn transparent" id="sign-up-btn">
                 Sign up
@@ -93,8 +106,9 @@ function Login() {
             <div className="content">
               <h3>One of us ?</h3>
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum
-                laboriosam ad deleniti.
+                Sign in to access your account and pick up where you left off!
+                <br />
+                We're Happy To Have You Back!
               </p>
               <button className="btn transparent" id="sign-in-btn">
                 Sign in
