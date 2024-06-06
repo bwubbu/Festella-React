@@ -4,14 +4,9 @@ import { AuthProvider } from './components/AuthContext';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import Vendor from './pages/Vendor';
-import SearchVendor from './pages/SearchVendor';
-import RegisterVendor from './pages/RegisterVendor';
-import BookingVendor from './pages/BookingVendor';
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-import EditProfile from './pages/EditProfile';
-import ForgotPassword from './pages/ForgotPassword';
+
+import VendorRoutes from './routes/VendorRoutes';
+import UserRoutes from './routes/UserRoutes';
 
 function App() {
   return (
@@ -22,15 +17,9 @@ function App() {
         <div className='container'>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/vendor" element={<Vendor />} />
-            <Route path="/vendor/search" element={<SearchVendor />} />
-            <Route path="/vendor/register" element={<RegisterVendor />} />
-            <Route path="/vendor/booking" element={<BookingVendor />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/login/forgotpassword" element={<ForgotPassword />} />
-            <Route path="/profile/editprofile" element={<EditProfile />} />
-            <Route path="/profile" element={<Profile />} />
           </Routes>
+          <VendorRoutes />
+          <UserRoutes />
         </div>
         <Footer />
       </Router>
