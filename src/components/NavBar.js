@@ -21,6 +21,7 @@ function NavBar() {
         </form>
         <div className='hiddenLinks'>
           <NavLink exact="true" to="/" activeclassname="active">Home</NavLink>
+          <NavLink to="/Forum" activeclassname="active">Forum</NavLink>
           <NavLink to="/vendor" activeclassname="active">Vendor</NavLink>
           <NavLink to='/login' activeclassname="active">Sign In</NavLink>
           <NavLink to='/Profile' activeclassname="active">Profile</NavLink>
@@ -28,6 +29,7 @@ function NavBar() {
       </div>
       <div className='rightSide'>
         <NavLink exact="true" to="/" activeclassname="active">Home</NavLink>
+        <NavLink to="/Forum" activeclassname="active">Forum</NavLink>
         <NavLink to="/vendor" activeclassname="active">Vendor</NavLink>
         <NavLink to='/login' activeclassname="active">Sign In</NavLink>
         <NavLink to='/Profile' activeclassname="active">Profile</NavLink>

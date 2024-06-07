@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
 import ForgotPassword from './pages/ForgotPassword';
+import Forum from './pages/Forum';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/vendor/register" element={<RegisterVendor />} />
             <Route path="/vendor/booking" element={<BookingVendor />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/forum" element={<Forum />} />
             <Route path="/login/forgotpassword" element={<ForgotPassword />} />
             <Route path="/profile/editprofile" element={<EditProfile />} />
             <Route path="/profile" element={<Profile />} />
