@@ -10,7 +10,7 @@ import axios from 'axios';
 
 function Login() {
   const containerRef = useRef(null);
-  const { login, register, changeAuthState } = useAuth();
+  const { setUserData, changeAuthState } = useAuth();
 
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
@@ -37,7 +37,7 @@ function Login() {
     console.log(loginData);
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, loginData, { withCredentials: true });
-      login(response.data);
+      setUserData(response.data);
       alert('Login successful');
       changeAuthState(true);
       navigate('/');
@@ -50,7 +50,7 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/user/register`, registerData, { withCredentials: true });
-      register(response.data);
+      setUserData(response.data);
       alert('User registered successfully');
       changeAuthState(true);
       navigate('/');
@@ -81,11 +81,11 @@ function Login() {
             <form action="#" className="sign-in-form" onSubmit={handleLogin}>
               <h1 className="title">Sign in</h1>
               <div className="input-field">
-                <FontAwesomeIcon className="icon" icon={faUser} color="black"/>
+                <FontAwesomeIcon className="icon" icon={faUser} color="black" />
                 <input type="text" placeholder="Username" name="username" required onChange={handleLoginChange} />
               </div>
               <div className="input-field">
-                <FontAwesomeIcon icon={faLock} color="black"/>
+                <FontAwesomeIcon icon={faLock} color="black" />
                 <input type="password" placeholder="Password" name="password" required onChange={handleLoginChange} />
               </div>
               <p className="forgot-password">
@@ -96,19 +96,19 @@ function Login() {
             <form action="#" className="sign-up-form" onSubmit={handleRegister}>
               <h1 className="title">Sign up</h1>
               <div className="input-field">
-                <FontAwesomeIcon icon={faUser} color="black"/>
+                <FontAwesomeIcon icon={faUser} color="black" />
                 <input type="text" placeholder="Username" name="username" required onChange={handleRegisterChange} />
               </div>
               <div className="input-field">
-                <FontAwesomeIcon icon={faEnvelope} color="black"/>
+                <FontAwesomeIcon icon={faEnvelope} color="black" />
                 <input type="email" placeholder="Email" name="email" required onChange={handleRegisterChange} />
               </div>
               <div className="input-field">
-                <FontAwesomeIcon icon={faLock} color="black"/>
+                <FontAwesomeIcon icon={faLock} color="black" />
                 <input type="password" placeholder="Password" name="password" required onChange={handleRegisterChange} />
               </div>
               <div className="input-field">
-                <FontAwesomeIcon icon={faLock} color="black"/>
+                <FontAwesomeIcon icon={faLock} color="black" />
                 <input type="password" placeholder="Confirm Password" name="password" required onChange={handleRegisterChange} />
               </div>
               <button type="submit" className="btn">Sign up</button>
