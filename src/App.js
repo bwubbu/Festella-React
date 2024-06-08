@@ -12,11 +12,8 @@ import EventForm from './components/EventForm';
 import VendorRoutes from './routes/VendorRoutes';
 import UserRoutes from './routes/UserRoutes';
 import LoginRoutes from './routes/LoginRoutes';
-<<<<<<< Updated upstream
 import RSVPP from './pages/RSVPP';
-=======
 import BrowseRoute from './routes/BrowseRoute';
->>>>>>> Stashed changes
 
 function App() {
   return (

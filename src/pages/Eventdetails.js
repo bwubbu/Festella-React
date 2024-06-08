@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { getEventById } from '../api/api';
+import ReviewList from '../components/ReviewList';
+import ReviewForm from '../components/ReviewForm';
 import '../styles/EventDetails.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function EventDetails() {
   const location = useLocation();
@@ -104,6 +107,11 @@ function EventDetails() {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="reviews-section">
+            <ReviewList eventId={eventId} />
+            <ReviewForm eventId={eventId} />
           </div>
         </div>
       </div>
