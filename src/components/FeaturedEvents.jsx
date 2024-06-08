@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-import './FeaturedEvents.css';
+import '../styles/FeaturedEvents.css';
 
 // Importing images
 import imageTaylor from '../assets/images/Featured_Taylor.jpg';

@@ -1,5 +1,5 @@
 import React from 'react';
-import './CallVendor.css'; // Make sure to create a corresponding CSS file
+import '../styles/CallVendor.css'; // Make sure to create a corresponding CSS file
 import { useNavigate } from 'react-router-dom';
 
 const CallVendor = () => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Banner.css';
+import '../styles/Banner.css';
 
 const images = [
   // Make sure these paths are correct

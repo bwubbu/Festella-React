@@ -1,5 +1,5 @@
 import React from 'react';
-import './PastEvent.css'; 
+import '../styles/PastEvent.css'; 
 import cs from '../assets/images/cs.png';
 import taylor from '../assets/images/taylor.png';
 import pena from '../assets/images/Penacony.jpeg';

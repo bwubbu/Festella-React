@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { getEventById } from '../api/api';
-import '../components/EventDetails.css';
+import '../styles/EventDetails.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function EventDetails() {
   const location = useLocation();
@@ -92,7 +93,7 @@ function EventDetails() {
                 </div>
               </div>
               <div className="main-border-button">
-                <a href={ticketLink}>Buy the ticket now!</a>
+              <Link to="/rsvpp">Buy the ticket now!</Link>
               </div>
               <div className="side-by-side-buttons">
                 <div className="main-border-button">

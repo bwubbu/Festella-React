@@ -1,5 +1,5 @@
 import React from 'react';
-import './TopArtist.css';
+import '../styles/TopArtist.css';
 
 // Importing images
 import imageSolo from '../assets/images/Solo.png';

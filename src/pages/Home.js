@@ -1,7 +1,7 @@
 import React from 'react';
 import Banner from '../components/Banner';
 import PopularEvents from '../components/PopularEvent';
-import CallVendor from '../components/CallVendor';
+import CallVendor from '../components/AddEvent';
 import PastEvent from '../components/PastEvent';
 
 function Home() {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './EventForm.css';
+import '../styles/EventForm.css';
 
 const EventForm = () => {
   const [eventData, setEventData] = useState({
@@ -12,10 +12,8 @@ const EventForm = () => {
     images: [],
     videoLink: '',
     description: '',
-    ticketLink: '',
     ticketSold: '',
     totalTicket: '',
-    status: ''
   });
 
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -69,7 +67,8 @@ const EventForm = () => {
       alert('Event added successfully');
     } catch (error) {
       console.error('Error adding event:', error);
-      alert(`Failed to add event: ${error.response ? error.response.data : error.message}`);
+      const errorMessage = error.response ? error.response.data.message : error.message;
+      alert(`Failed to add event: ${errorMessage}`);
     }
   };
 
@@ -82,6 +81,8 @@ const EventForm = () => {
           <label>ID:</label>
           <input type="text" name="id" value={eventData.id} onChange={handleInputChange} required />
         </div>
+      </div>
+      <div className="form-row">
         <div>
           <label>Name:</label>
           <input type="text" name="name" value={eventData.name} onChange={handleInputChange} required />
@@ -90,7 +91,14 @@ const EventForm = () => {
       <div className="form-row">
         <div>
           <label>Category:</label>
-          <input type="text" name="category" value={eventData.category} onChange={handleInputChange} required />
+          <select name="category" value={eventData.category} onChange={handleInputChange} required>
+            <option value="">Select Category</option>
+            <option value="Concert">Concert</option>
+            <option value="Cosplay">Cosplay</option>
+            <option value="Festival">Festival</option>
+            <option value="Conference">Conference</option>
+            <option value="Workshop">Workshop</option>
+          </select>
         </div>
         <div>
           <label>Rating:</label>
@@ -112,10 +120,6 @@ const EventForm = () => {
           <label>Video Link:</label>
           <input type="text" name="videoLink" value={eventData.videoLink} onChange={handleInputChange} required />
         </div>
-        <div>
-          <label>Ticket Link:</label>
-          <input type="text" name="ticketLink" value={eventData.ticketLink} onChange={handleInputChange} required />
-        </div>
       </div>
       <div className="form-row">
         <div>
@@ -131,10 +135,6 @@ const EventForm = () => {
         <div>
           <label>Total Tickets:</label>
           <input type="number" name="totalTicket" value={eventData.totalTicket} onChange={handleInputChange} required />
-        </div>
-        <div>
-          <label>Status:</label>
-          <input type="text" name="status" value={eventData.status} onChange={handleInputChange} required />
         </div>
       </div>
       <button type="submit">Add Event</button>

@@ -12,10 +12,10 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center items vertically in the box */
-  width: 100%; /* Ensures the item fills the column space */
-  max-width: 250px; /* Increased max width */
-  height: 400px; /* Increased height */
+  align-items: center; 
+  width: 100%; 
+  max-width: 250px; 
+  height: 400px; 
   box-sizing: border-box;
 }
 
@@ -84,13 +84,25 @@
 
 .most-popular .row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Adjusted to fit more items in a row */
+  grid-template-columns: repeat(6, 1fr); /* Adjusted to fit six items in a row */
   gap: 15px; /* Reduced gap between items */
   justify-content: center; /* Center the grid within its container */
 }
 
+@media (max-width: 1200px) {
+  .most-popular .row {
+    grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns for smaller screens */
+  }
+}
+
 @media (max-width: 768px) {
   .most-popular .row {
-    grid-template-columns: repeat(2, 1fr); /* Adjust the number of columns for smaller screens */
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+@media (max-width: 576px) {
+  .most-popular .row {
+    grid-template-columns: 1fr; 
   }
 }

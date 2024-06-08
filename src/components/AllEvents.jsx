@@ -1,6 +1,6 @@
 // frontend/src/components/AllEvents.js
 import React, { useState, useEffect } from 'react';
-import './AllEvents.css';
+import '../styles/AllEvents.css';
 import { useNavigate } from 'react-router-dom';
 import { getEvents } from '../api/api';
 
