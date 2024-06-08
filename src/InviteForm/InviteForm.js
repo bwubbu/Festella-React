@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getEvents } from '../api/api'; // Import the getEvents function
-import '../App.css';
+import '../styles/Appo.css';
 
 function InviteForm(props) {
   const [name, setName] = useState('');
@@ -35,25 +35,25 @@ function InviteForm(props) {
   };
 
   return (
-    <div className="container">
-      <p>{errorMessage}</p>
-      <form className="form" onSubmit={nextClicked}>
-        <label>
+    <div className="rsvpp-container">
+      <p className="rsvpp-p">{errorMessage}</p>
+      <form className="rsvpp-form" onSubmit={nextClicked}>
+        <label className="rsvpp-label">
           Name:
           <br />
           <input
             type="text"
             name="name"
-            className="textfield"
+            className="rsvpp-textfield"
             onChange={e => setName(e.target.value)}
           />
         </label>
         <br /><br />
-        <label>
+        <label className="rsvpp-label">
           Events:
           <br />
           <select
-            className="select"
+            className="rsvpp-select"
             onChange={e => setDietaryRequirements(e.target.value)}
           >
             <option value="" disabled selected>Select</option>
@@ -63,7 +63,7 @@ function InviteForm(props) {
           </select>
           <br /><br />
         </label>
-        <button type="submit" className="next-btn">Next</button>
+        <button type="submit" className="rsvpp-next-btn">Next</button>
       </form>
     </div>
   );
