@@ -1,0 +1,72 @@
+.form-register {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #1f2122;
+    color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: auto;
+
+    h2 {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #ddd;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #555;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: #333;
+        color: #fff;
+        resize: vertical;
+    }
+
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+
+        > div {
+            flex: 1;
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            padding: 0;
+        }
+    }
+
+    button {
+        width: 100%;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        background-color: #e75e8d;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+        text-transform: capitalize;
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        background-color: white;
+        color: #e75e8d;
+    }
+}

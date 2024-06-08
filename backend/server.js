@@ -24,6 +24,13 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 app.use('/vendors', vendorRoutes);
 app.use('/user', userRoutes);
 
+// Importing event routes
+const eventRoutes = require('./Routes/eventroutes');
+app.use('/', eventRoutes);
+
+const uploadRoutes = require('./Routes/upload');
+app.use('/', uploadRoutes);
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

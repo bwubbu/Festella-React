@@ -1,0 +1,96 @@
+.most-popular {
+  margin-top: 60px;
+  padding: 30px;
+  background-color: #1f2122;
+  border-radius: 23px;
+}
+
+.most-popular .item {
+  background-color: #27292a;
+  padding: 30px 15px;
+  border-radius: 23px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items vertically in the box */
+  width: 100%; /* Ensures the item fills the column space */
+  max-width: 250px; /* Increased max width */
+  height: 400px; /* Increased height */
+  box-sizing: border-box;
+}
+
+.most-popular .item:hover {
+  background-color: #252627;
+}
+
+.most-popular .item .item {
+  padding: 0px;
+  border-radius: 0px;
+  background-color: transparent;
+  margin-bottom: 0px;
+}
+
+.most-popular .item img {
+  width: 100%;
+  height: 200px; /* Increased height for consistency */
+  border-radius: 23px;
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+.most-popular .item img:hover {
+  opacity: 0.8;
+}
+
+.most-popular .item h4 {
+  font-size: 18px; /* Increased font size */
+  margin-top: 20px;
+  margin-bottom: 0px;
+  text-align: center; /* Center the text */
+}
+
+.most-popular .item span {
+  color: #666;
+  display: block;
+  margin-top: 7px;
+  font-weight: 400;
+}
+
+.most-popular .item ul {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+  text-align: center; /* Center the text */
+}
+
+.most-popular .item ul li {
+  display: inline;
+  color: #fff;
+  font-size: 14px;
+  margin: 0 10px; /* Add some spacing between the list items */
+}
+
+.most-popular .item ul li:first-child i {
+  color: rgb(208, 208, 76);
+}
+
+.most-popular .item ul li:last-child i {
+  color: #ec6090;
+}
+
+.most-popular .main-button {
+  text-align: center;
+  margin-bottom: -53px;
+}
+
+.most-popular .row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Adjusted to fit more items in a row */
+  gap: 15px; /* Reduced gap between items */
+  justify-content: center; /* Center the grid within its container */
+}
+
+@media (max-width: 768px) {
+  .most-popular .row {
+    grid-template-columns: repeat(2, 1fr); /* Adjust the number of columns for smaller screens */
+  }
+}
