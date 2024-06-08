@@ -141,3 +141,28 @@
     display: none;
   }
 }
+
+.profile-border-button {
+  border: 1px solid #ec6090;
+  padding: 12px 30px;
+  display: inline-block;
+  border-radius: 25px;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-border-button a {
+  color: #ec6090;
+  text-decoration: none;
+}
+
+.profile-border-button a:hover {
+  border-color: #fff;
+  background-color: #fff;
+  color: #e75e8d;
+}

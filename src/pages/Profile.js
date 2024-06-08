@@ -1,56 +1,54 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, {  } from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 import "../styles/Profile.css";
 import profilePicture from "../assets/pfpplaceholder.jpg";
+import { useAuth } from "../components/AuthContext";
 
 function Profile() {
+  const { user } = useAuth();
+
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-12">
-          <div className="page-content">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="main-profile">
-                  <div className="row">
-                    <div className="col-lg-3">
-                      <img
-                        src={profilePicture}
-                        alt="Profile"
-                        className="profile-picture"
-                      />
-                    </div>
-                    <div className="col-lg-7 align-self-center">
-                      <div className="main-info header-text">
-                        <p>
-                          Hey There,
-                        </p>
-                        <h1 className="marginText2">PinkyP17</h1>
-                        <div className="main-border-button">
-                          <Link to="/profile/editprofile">Edit profile</Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-lg-12">
-                      <div className="clips">
-                        <div className="row">
-                          <div className="heading-section">
-                            <h4>
-                              <em>Registered</em> Events
-                            </h4>
-                            <div className="most-popular">
-                              <div className="row" id="eventContainer"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+    <div className="page-content">
+      <div className="profile-container">
+        <div className="profile-and-events">
+          <div className="profile-and-registered-events">
+            <div className="profile">
+              <div className="profile-picture">
+                {user && user.profile ? (
+                  <img src={user.profile.image} alt="User Profile" />
+                ) : (
+                  <img src={profilePicture} alt="User Profile" />
+                )}
+                <Link to="/profile/editprofile" className="edit-profile">
+                <button>Edit Profile</button></Link>
               </div>
+              <div className="profile-info">
+                <p>Hey there!</p>
+                {user && user.profile ? (
+                  <h2>{user.profile.name}</h2>
+                ) : (
+                  <h2>No Name</h2>
+                )}
+              </div>
+            </div>
+            <div className="registered-events">
+              <div className="title">
+                <h2 className="coloured-font">Registered</h2>
+                <h2>Events</h2>
+              </div>
+              <div className="registered-events-container">
+                
+              </div>
+            </div>
+          </div>
+          <div className="bookmarked-events">
+            <div className="title">
+              <h2 className="coloured-font">Bookmarked</h2>
+              <h2>Events</h2>
+            </div>
+            <div className="bookmarked-events-container">
+
             </div>
           </div>
         </div>
