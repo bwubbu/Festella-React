@@ -13,7 +13,14 @@ const vendorSchema = new mongoose.Schema({
   description: String,
   service: String,
   availability: String,
-  map: String
+  map: String,
+  bookings: [{
+    name: String,
+    email: String,
+    date: Date,
+    time: String,
+    notes: String
+  }]
 });
 
 const Vendor = mongoose.model('Vendor', vendorSchema);

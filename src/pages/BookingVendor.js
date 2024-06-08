@@ -1,16 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../App.css';
 import '../styles/Vendor.css';
 import { useVendors } from '../components/VendorContext';
 import Back from '@mui/icons-material/KeyboardReturn';
+import axios from 'axios';
 
 function BookingVendor() {
   const location = useLocation();
   const { vendorId } = location.state || {};
-  const { vendors } = useVendors();
+  const { vendors, bookVendor } = useVendors();
 
   const vendor = vendors.find(vendor => vendor._id === vendorId);
+
+  const [bookData, setBookData] = useState({
+    name: '',
+    email: '',
+    date: '',
+    time: '',
+    notes: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value} = e.target;
+    setBookData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`http://localhost:5000/vendors/${vendorId}/book`, bookData);
+      bookVendor(response.data);
+      alert('Vendor booked successfully');
+    } catch (error) {
+      console.error('Error booking vendor', error);
+      alert('Failed to book vendor. Please try again.');
+    }
+  };
 
   return (
     <div className='page-content'>
@@ -48,26 +74,26 @@ function BookingVendor() {
 
         <div className='booking-form'>
           <h3>Book Now</h3>
-          <form id='booking-form'>
+          <form id='booking-form' onSubmit={handleSubmit}>
             <div>
               <label htmlFor="name">Name:</label>
-              <input type="text" id="name" placeholder="Your Name" required />
+              <input type="text" id="name" placeholder="Your Name" name='name' required value={bookData.name} onChange={handleChange} />
             </div>
             <div>
               <label htmlFor="email">Email:</label>
-              <input type="email" id="e-mail" placeholder="Your Email" required />
+              <input type="email" id="e-mail" placeholder="Your Email" name='email' required value={bookData.email} onChange={handleChange} />
             </div>
             <div>
               <label htmlFor="date">Date:</label>
-              <input type="date" id="date" required />
+              <input type="date" id="date" name='date' required value={bookData.date} onChange={handleChange} />
             </div>
             <div>
               <label htmlFor="time">Time:</label>
-              <input type="time" id="time" required />
+              <input type="time" id="time" name='time' required value={bookData.time} onChange={handleChange} />
             </div>
             <div>
               <label htmlFor="notes">Notes:</label>
-              <textarea id="notes" placeholder="Additional Notes" rows="3"></textarea>
+              <textarea id="notes" placeholder="Additional Notes" rows="3" name='notes' value={bookData.notes} onChange={handleChange} />
             </div>
             <button type="submit">Submit</button>
           </form>
