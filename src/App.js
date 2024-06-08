@@ -6,14 +6,17 @@ import { VendorProvider } from './components/VendorContext';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import Browse from './pages/Browse';
-import Eventdetails from './pages/Eventdetails';
+
 import EventForm from './components/EventForm';
 
 import VendorRoutes from './routes/VendorRoutes';
 import UserRoutes from './routes/UserRoutes';
 import LoginRoutes from './routes/LoginRoutes';
+<<<<<<< Updated upstream
 import RSVPP from './pages/RSVPP';
+=======
+import BrowseRoute from './routes/BrowseRoute';
+>>>>>>> Stashed changes
 
 function App() {
   return (
@@ -25,9 +28,8 @@ function App() {
             <div className='container'>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/browse" element={<Browse />} />
-                <Route path="/browse/eventdetails" element={<Eventdetails />} />
                 <Route path="/add-event" element={<EventForm />} />
+                <Route path="/browse/*" element={<BrowseRoute />} />
                 <Route path="/vendor/*" element={<VendorRoutes />} />
                 <Route path="/profile/*" element={<UserRoutes />} />
                 <Route path="/login/*" element={<LoginRoutes />} />
