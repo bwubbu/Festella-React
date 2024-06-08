@@ -13,6 +13,7 @@ import EventForm from './components/EventForm';
 import VendorRoutes from './routes/VendorRoutes';
 import UserRoutes from './routes/UserRoutes';
 import LoginRoutes from './routes/LoginRoutes';
+import RSVPP from './pages/RSVPP';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/vendor/*" element={<VendorRoutes />} />
                 <Route path="/profile/*" element={<UserRoutes />} />
                 <Route path="/login/*" element={<LoginRoutes />} />
+                <Route path="/rsvpp" element={<RSVPP />} />
               </Routes>
             </div>
             <Footer />
