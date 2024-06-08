@@ -110,7 +110,7 @@ export default MostPopularEvents;
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getTopEvents } from '../api/api';
-import './PopularEvent.css';
+import '../styles/PopularEvent.css';
 
 const MostPopularEvents = () => {
   const navigate = useNavigate();

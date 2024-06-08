@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getEventById } from '../api/api';
-import '../components/EventDetails.css';
+import '../styles/EventDetails.css';
 
 function EventDetails() {
   const location = useLocation();
