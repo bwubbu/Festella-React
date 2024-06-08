@@ -10,7 +10,6 @@ const eventSchema = new mongoose.Schema({
   images: { type: [String], required: true },
   videoLink: { type: String, required: true },
   description: { type: String, required: true },
-  ticketLink: { type: String, required: true },
   ticketSold: { type: Number, required: true },
   totalTicket: { type: Number, required: true }
 }, { collection: 'events' });

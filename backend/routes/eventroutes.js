@@ -72,4 +72,18 @@ router.delete('/events/:id', async (req, res) => {
   }
 });
 
+// Get the latest event ID
+router.get('/events/latest-id', async (req, res) => {
+  try {
+    const latestEvent = await Event.findOne().sort({ id: -1 }).exec();
+    console.log('Latest Event:', latestEvent);  // Logging latest event
+    const latestId = latestEvent ? latestEvent.id : 0;
+    console.log('Latest Event ID:', latestId);  // Logging latest event ID
+    res.json({ latestId });
+  } catch (err) {
+    console.error('Error fetching latest ID:', err.message);
+    res.status(500).json({ message: 'Failed to fetch the latest event ID', error: err.message });
+  }
+});
+
 module.exports = router;

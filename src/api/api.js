@@ -10,5 +10,6 @@ export const addEvent = (event) => api.post('/events', event);
 export const updateEvent = (id, event) => api.put(`/events/${id}`, event);
 export const deleteEvent = (id) => api.delete(`/events/${id}`);
 export const getEventById = (id) => api.get(`/events/${id}`);
+export const getLatestEventId = () => api.get('/events/latest-id');
 
 export default api;
