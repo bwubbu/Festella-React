@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getTopEvents } from '../api/api';
-import '../styles/PopularEvent.css';
+import '../styles/Events.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const MostPopularEvents = () => {

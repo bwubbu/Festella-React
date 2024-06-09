@@ -1,0 +1,997 @@
+/* Banner Event Style */
+.main-banner {
+    background-position: center center;
+    background-size: cover;
+    min-height: 380px;
+    border-radius: 23px;
+    padding: 80px 60px;
+    position: relative; 
+    transition: background-image 0.6s ease-in-out;
+  }
+  
+  .main-banner h6 {
+    font-size: 20px;
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 25px;
+  }
+  
+  .main-banner h4 {
+    font-size: 45px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+  }
+  
+  .main-banner h4 em {
+    font-style: normal;
+    color: #ec6090;
+  }
+  
+  .button-style {
+    display: inline-block;
+    background-color: #ec6090;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-style:hover {
+    background-color: #bf486a;
+  }
+  
+  .carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+  }
+  
+  .carousel-controls button {
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .carousel-controls button:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  
+  .carousel-dots {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .dot {
+    position: center;
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease-in-out;
+  }
+  
+  .dot.active {
+    background-color: #000;
+  }
+  
+  
+/*Browse Event Style */
+.browse-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adjust as needed */
+    padding: 20px; /* Add padding if necessary */
+  }
+  
+  .featured-and-artist-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust as needed */
+  }
+  
+  .featured-events-container {
+    flex: 2; /* Adjust as necessary */
+  }
+  
+  .top-artist {
+    flex: 1; /* Adjust as necessary */
+  }
+  
+  .all-events-container { 
+    border-radius: 8px; /* Adjust as necessary */
+    background-color: #1f2122; /* Adjust as necessary */
+  }
+  
+
+  /* Popular Event */
+  .most-popular {
+    margin-top: 60px;
+    padding: 30px;
+    background-color: #1f2122;
+    border-radius: 23px;
+  }
+  
+  .most-popular .item {
+    background-color: #27292a;
+    padding: 30px 15px;
+    border-radius: 23px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%; 
+    max-width: 250px; 
+    height: 400px; 
+    box-sizing: border-box;
+  }
+  
+  .most-popular .item:hover {
+    background-color: #252627;
+  }
+  
+  .most-popular .item .item {
+    padding: 0px;
+    border-radius: 0px;
+    background-color: transparent;
+    margin-bottom: 0px;
+  }
+  
+  .most-popular .item img {
+    width: 100%;
+    height: 200px; /* Increased height for consistency */
+    border-radius: 23px;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+  }
+  
+  .most-popular .item img:hover {
+    opacity: 0.8;
+  }
+  
+  .most-popular .item h4 {
+    font-size: 18px; /* Increased font size */
+    margin-top: 20px;
+    margin-bottom: 0px;
+    text-align: center; /* Center the text */
+  }
+  
+  .most-popular .item span {
+    color: #666;
+    display: block;
+    margin-top: 7px;
+    font-weight: 400;
+  }
+  
+  .most-popular .item ul {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+    text-align: center; /* Center the text */
+  }
+  
+  .most-popular .item ul li {
+    display: inline;
+    color: #fff;
+    font-size: 14px;
+    margin: 0 10px; /* Add some spacing between the list items */
+  }
+  
+  .most-popular .item ul li:first-child i {
+    color: rgb(208, 208, 76);
+  }
+  
+  .most-popular .item ul li:last-child i {
+    color: #ec6090;
+  }
+  
+  .most-popular .main-button {
+    text-align: center;
+    margin-bottom: -53px;
+  }
+  
+  .most-popular .row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Adjusted to fit six items in a row */
+    gap: 15px; /* Reduced gap between items */
+    justify-content: center; /* Center the grid within its container */
+  }
+  
+  @media (max-width: 1200px) {
+    .most-popular .row {
+      grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns for smaller screens */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .most-popular .row {
+      grid-template-columns: repeat(2, 1fr); 
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .most-popular .row {
+      grid-template-columns: 1fr; 
+    }
+  }
+  
+
+  /* Add Event Style */
+  .vendor-call-section {
+    background-color: #1f2122; /* Dark background for the section */
+    padding: 30px;
+    border-radius: 23px;
+    color: #fff; /* Light text color for contrast */
+    text-align: center;
+    margin-top: 60px; /* Provide some spacing from the previous section */
+  }
+  
+  .vendor-call-content h2 {
+    margin: 10px 0;
+    color: #ec6090; /* Accent color similar to your theme */
+  }
+  
+  .create-event-button {
+    background-color: #ec6090; /* Pink background for the button */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.create-event-button:hover {
+    background-color: #fff; /* White background on hover */
+    color: #ec6090; /* Pink text color on hover for better visibility */
+}
+
+  .create-event-button .plus-icon {
+    color: #ec6090; /* Accent color for the plus icon */
+    margin-right: 5px;
+  }
+  
+  .vendor-call-content p {
+    margin: 10px 0;
+    color: #666;
+  }
+  
+
+  /* Past Event Style */
+  .gaming-library {
+    width: 80%; /* Adjust width to your preference, e.g., 80% of the parent container */
+    margin: 60px auto; /* Centers the container with automatic margins */
+    padding: 30px;
+    background-color: #1f2122;
+    border-radius: 23px;
+  }
+  
+  .gaming-library .item {
+    border-bottom: 1px solid #27292a;
+    padding-bottom: 20px;
+    padding-left: 10px; /* Reduced left padding */
+    padding-right: 10px; /* Reduced right padding */
+  }
+  
+  .gaming-library .last-item {
+    margin-bottom: 30px;
+  }
+  
+  .profile-library .last-item {
+    border-bottom: none;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .gaming-library .item ul {
+    display: flex; /* Add flexbox */
+    align-items: center; /* Vertically center all children */
+    flex-wrap: wrap; /* Allow items to wrap */
+    justify-content: space-between;
+  }
+  
+  .gaming-library .item ul li {
+    margin-top: 5px; /* Smaller top margin to push content up */
+    display: block; /* Switch to block to fill the flex container */
+    flex: 1; /* Each takes equal width */
+    padding: 10px; /* Padding for spacing */
+  }
+  
+  .gaming-library .item ul li img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    margin-top: 0px;
+    border-radius: 23px;
+  }
+  
+  .gaming-library .item ul li:first-child {
+    flex: 0 0 100px; /* Do not grow, do not shrink, initial width 100px */
+  }
+  
+  .gaming-library .item ul li:last-child {
+    flex: 0 0 120px; /* Adjust last item width for alignment */
+    display: flex; /* Using flex to align the button */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+  }
+  
+  
+  .gaming-library .item ul li h4 {
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+  
+  .gaming-library .item ul li span {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .gaming-library .main-button {
+    text-align: center;
+    margin-bottom: -53px;
+  }
+  
+  .main-border-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ec6090;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .main-border-button a:hover {
+    background-color: #1f2122;
+  }
+  
+  .view-library-button a {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #ec6090;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    border: none;
+  }
+  
+  .view-library-button a:hover, .view-library-button a:focus {
+    background-color: #ffffff;
+    color: #ec6090;
+    border: 1px solid #ec6090;
+  }
+  
+
+  /* Featured Event Style */
+  .featured-events-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  
+  .featured-games {
+    border-radius: 23px;
+    background-color: #1f2122;
+    padding: 30px;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  .featured-games .heading-section {
+    margin-bottom: 20px;
+  }
+  
+  .featured-games .slick-slide {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .featured-games .item {
+    padding: 10px;
+  }
+  
+  .featured-games .item .thumb {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 300px;
+    height: 450px; /* Fixed height */
+  }
+  
+  .featured-games .item .thumb img {
+    width: 100%;
+    height: 100%; /* Fixed height */
+    object-fit: cover; /* Maintain aspect ratio and fill the container */
+    border-radius: 23px;
+  }
+  
+  .featured-games .item .thumb .hover-effect {
+    position: absolute;
+    bottom: -100px;
+    text-align: center;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .4s;
+  }
+  
+  .featured-games .item .thumb:hover .hover-effect {
+    opacity: 1;
+    visibility: visible;
+    bottom: 15px;
+  }
+  
+  .featured-games .item .thumb .hover-effect h6 {
+    background-color: rgba(31,33,34,0.95);
+    display: inline-block;
+    color: #ec6090;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 25px;
+  }
+  
+  .featured-games .item h4 {
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    display: inline-block;
+  }
+  
+  .featured-games .item span {
+    color: #666;
+    display: block;
+    margin-top: 7px;
+    font-weight: 400;
+  }
+  
+  .featured-games .item ul {
+    float: right;
+    margin-top: 20px;
+  }
+  
+  .featured-games .item ul li {
+    text-align: right;
+    color: #fff;
+    font-size: 14px;
+  }
+  
+  .featured-games .item ul li:first-child i {
+    color: yellow;
+  }
+  
+  .featured-games .item ul li:last-child i {
+    color: #ec6090;
+  }
+  
+  .slick-prev:before, .slick-next:before {
+    color: #fff;
+  }
+
+  
+  /* Top Artist Style */
+  .top-artist {
+    border-radius: 23px;
+    background-color: #1f2122;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px; /* Increased width */
+  }
+  
+  .top-artist .heading-section {
+    margin-bottom: 20px;
+  }
+  
+  .top-artist .heading-section h4 {
+    font-size: 28px; /* Increased font size */
+    font-weight: bold;
+    color: #ec6090;
+  }
+  
+  .top-artist .heading-section h4 em {
+    color: white;
+  }
+  
+  .top-artist ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .top-artist ul li {
+    display: flex;
+    align-items: center;
+    padding: 15px 0; /* Increased padding */
+    border-bottom: 1px solid #27292a;
+  }
+  
+  .top-artist ul li:last-child {
+    border-bottom: none;
+  }
+  
+  .top-artist ul li img {
+    width: 70px; /* Increased image size */
+    height: 70px; /* Increased image size */
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .top-artist ul li h4 {
+    font-size: 20px; /* Increased font size */
+    margin: 0;
+    color: white;
+  }
+  
+  .top-artist ul li h6 {
+    font-size: 16px; /* Increased font size */
+    color: #666;
+    margin: 0;
+  }
+  
+  .top-artist ul li span {
+    font-size: 16px; /* Increased font size */
+    color: #ec6090;
+    margin-left: auto;
+  }
+  
+  .top-artist .text-button {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .top-artist .text-button a {
+    font-weight: 600;
+    color: #ec6090;
+    font-size: 18px; /* Increased font size */
+    text-decoration: none;
+  }
+  
+  .top-artist .text-button a:hover {
+    text-decoration: underline;
+  }
+
+  
+  /* All Event Style */
+  .all-events {
+    padding: 30px;
+    background-color: #1f2122;
+    border-radius: 23px;
+  }
+  
+  .all-events .item {
+    background-color: #27292a;
+    padding: 30px 15px;
+    border-radius: 23px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .all-events .item:hover {
+    background-color: #252627;
+  }
+  
+  .all-events .item img {
+    width: 100%;
+    height: 200px; /* Ensure a consistent height */
+    border-radius: 23px;
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+  }
+  
+  .all-events .item h4 {
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    text-align: center; /* Center the text */
+  }
+  
+  .all-events .item span {
+    color: #666;
+    display: block;
+    margin-top: 7px;
+    font-weight: 400;
+  }
+  
+  .all-events .item ul {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+    text-align: center; /* Center the text */
+  }
+  
+  .all-events .item ul li {
+    display: inline;
+    color: #fff;
+    font-size: 14px;
+    margin: 0 10px; /* Add some spacing between the list items */
+  }
+  
+  .all-events .item ul li:first-child i {
+    color: rgb(208, 208, 76);
+  }
+  
+  .all-events .item ul li:last-child i {
+    color: #ec6090;
+  }
+  
+  .all-events .row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Ensure the items fill the space properly */
+    gap: 20px; /* Add some space between the items */
+  }
+  
+  @media (max-width: 768px) {
+    .all-events .row {
+        grid-template-columns: repeat(2, 1fr); /* Adjust the number of columns for smaller screens */
+    }
+  }
+  
+  .pagination {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    background-color: #27292a;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 50%; /* Make the buttons circular */
+    cursor: pointer;
+    width: 40px; /* Fixed width to make them circular */
+    height: 40px; /* Fixed height to make them circular */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pagination button.active {
+    background-color: #ec6090; /* Active button color */
+    color: #fff;
+  }
+  
+  .pagination button:hover {
+    background-color: #ec6090; /* Hover color */
+    color: #fff; /* Ensure the number remains visible */
+  }
+  
+
+  /* Event Detail Style */
+  .event-details-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .event-details {
+    padding: 20px;
+    background-color: #1f2122;
+    color: #fff;
+  }
+  
+  .image-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .main-image-container {
+    flex: 1;
+    text-align: center;
+    margin-right: 20px;
+  }
+  
+  .main-image {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .video-thumbnail {
+    flex: 1;
+    position: relative;
+    text-align: center;
+  }
+  
+  .thumbnail-image {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 48px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .event-title {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  
+  .event-info-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #27292a;
+    border-radius: 23px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .event-info-left {
+    flex: 1;
+  }
+  
+  .event-info-left h4 {
+    font-size: 25px;
+    color: #fff;
+  }
+  
+  .event-info-left span {
+    color: #666;
+    display: block;
+    margin-top: 7px;
+    font-weight: 400;
+  }
+  
+  .event-info-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .event-info-right ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .event-info-right ul li {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    font-size: 18px; /* Increase text size */
+    color: #fff;
+  }
+  
+  .event-info-right ul li i {
+    margin-right: 5px;
+    color: #ec6090;
+    font-size: 18px; /* Increase icon size */
+  }
+  
+  .game-details h2 {
+    font-size: 45px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 60px 0px;
+    color: #fff;
+  }
+  
+  .game-details .content {
+    border-radius: 23px;
+    padding: 30px;
+    background-color: #27292a;
+    margin: 20px;
+  }
+  
+  .image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .image-grid .img-fluid {
+    flex: 1;
+    max-width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .progress {
+    height: 20px;
+    background-color: #444;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 10px;
+  }
+  
+  .progress-bar-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .main-border-button {
+    margin-top: 35px;
+    text-align: center;
+  }
+  
+  .main-border-button a {
+    text-align: center;
+    width: 90%;
+    background-color: #ec6090;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 23px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+  }
+  
+  .main-border-button a:hover {
+    background-color: #fff;
+    color: #ec6090;
+  }
+  
+  .side-by-side-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .side-by-side-buttons .main-border-button a {
+    width: auto;
+  }
+  
+  .description {
+    margin: 10px;
+    font-size: 18px;
+  }
+  
+  .progress {
+    height: 20px;
+    background-color: #444;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .progress-bar {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #e760ec, #f9a8d4);
+    transition: width 0.6s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .progress-bar-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  
+
+/* Event Form Style */
+.form-register {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #1f2122;
+    color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: auto;
+
+    h2 {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #ddd;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #555;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: #333;
+        color: #fff;
+        resize: vertical;
+    }
+
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+
+        > div {
+            flex: 1;
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            padding: 0;
+        }
+    }
+
+    button {
+        width: 100%;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        background-color: #e75e8d;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+        text-transform: capitalize;
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        background-color: white;
+        color: #e75e8d;
+    }
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { getEventById } from '../api/api';
-import '../styles/EventDetails.css';
+import '../styles/Events.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function EventDetails() {
@@ -41,7 +41,6 @@ function EventDetails() {
     images,
     videoLink,
     description,
-    ticketLink,
     ticketSold = 0,
     totalTicket = 1000000
   } = eventDetails;
