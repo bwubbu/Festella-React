@@ -86,4 +86,27 @@ router.get('/events/latest-id', async (req, res) => {
   }
 });
 
+// Get reviews by event ID
+router.get('/reviews/:eventId', async (req, res) => {
+  try {
+    const reviews = await Review.find({ eventId: req.params.eventId });
+    res.json(reviews);
+  } catch (err) {
+    console.error('Error fetching reviews:', err.message);
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Create a new review
+router.post('/reviews', async (req, res) => {
+  const review = new Review(req.body);
+  try {
+    const newReview = await review.save();
+    res.status(201).json(newReview);
+  } catch (err) {
+    console.error('Error creating review:', err.message);
+    res.status(400).json({ message: err.message });
+  }
+});
+
 module.exports = router;

@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900");
+
+/* General Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  background-color: #1e1e1e;  /* Set the whole background to dark */
+  color: white;  /* Ensure text color is white for readability */
+  height: 100%;
+  width: 100%;
+}
+
+.rsvpp-App {
+  text-align: center;
+  width: 100%;
+  min-height: 100vh;  /* Ensure the app takes at least full viewport height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1e1e1e;  /* Apply dark background */
+}
+
+.rsvpp-App-logo {
+  height: 20vmin;
+  pointer-events: none;
+}
+
+.rsvpp-App-header {
+  background-color: #1e1e1e;
+  padding: 20px;
+  color: white;
+}
+
+.rsvpp-booking-button {
+  margin: 20px 0; /* Adjust this to control the spacing */
+}
+
+.rsvpp-h1, .rsvpp-h2, .rsvpp-h3, .rsvpp-h4, .rsvpp-h5, .rsvpp-h6 {
+  margin: 0;
+  color: #fff;
+  font-weight: 700;
+}
+
+.rsvpp-h1 {
+  font-size: 2.5rem;
+}
+
+.rsvpp-h2 {
+  font-size: 1.5rem;
+}
+
+.rsvpp-p {
+  font-size: 14px;
+  line-height: 30px;
+  color: #fff;
+}
+
+.rsvpp-label {
+  color: white; /* Add this line to make label text white */
+}
+
+.rsvpp-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e75e8d;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: all 0.3s ease;
+  width: 150px; /* Add this line to set a fixed width */
+  margin: 5px; /* Add this line to add space between buttons */
+}
+
+.rsvpp-button:hover {
+  background-color: white;
+  color: #e75e8d;
+}
+
+.rsvpp-next-btn {
+  padding: 10px 20px;
+  border: 2px solid #e75e8d;
+  background-color: #e75e8d;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  width: 150px; /* Add this line to set a fixed width */
+  margin: 5px; /* Add this line to add space between buttons */
+}
+
+.rsvpp-next-btn:hover {
+  background-color: white;
+  color: #e75e8d;
+}
+
+.rsvpp-select {
+  width: 100%;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e75e8d;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: all 0.3s ease;
+  appearance: none; /* Remove default dropdown arrow */
+  -webkit-appearance: none; /* Remove default dropdown arrow in Safari */
+  -moz-appearance: none; /* Remove default dropdown arrow in Firefox */
+}
+
+.rsvpp-select:hover {
+  background-color: white;
+  color: #e75e8d;
+}
+
+.rsvpp-option {
+  background-color: white;
+  color: #e75e8d;
+}
+
+.rsvpp-textfield {
+  border: 2px solid white;
+  border-radius: 0px;
+  font-size: 14px;
+  width: 100%;  /* Ensure full width for centering */
+}
+
+.rsvpp-colour-section {
+  padding: 30px;
+  background-color: #1e1e1e;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: center; /* Center the container */
+  width: 100%; /* Make the section take full width */
+}
+
+.rsvpp-guests-section {
+  display: flex;
+  justify-content: center; /* Center the container */
+  width: 100%; /* Make the section take full width */
+}
+
+.rsvpp-form {
+  width: 100%; /* Ensure form takes full width for centering */
+}
+
+.rsvpp-container {
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: #27292a;
+  border-radius: 15px;
+  align-items: center; /* Center contents of the container */
+  justify-content: center; /* Center contents vertically */
+  width: 80%; /* Adjust width as needed */
+  max-width: 800px; /* Limit the maximum width for better responsiveness */
+  height: auto; /* Adjust height to fit content */
+}
+
+.rsvpp-page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rsvpp-footer {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  display: block;
+}
+
+.rsvpp-footer p {
+  text-align: center;
+  padding: 30px 0px;
+  color: #fff;
+  font-weight: 300;
+}
+
+.rsvpp-footer p a {
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.rsvpp-footer p a:hover {
+  color: #ec6090;
+}
+
+.rsvpp-button-group {
+  display: flex;
+  gap: 10px; /* Adjust the gap value as needed */
+  justify-content: center;
+  align-items: center;
+}
+

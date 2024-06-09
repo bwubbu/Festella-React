@@ -27,8 +27,23 @@ export const VendorProvider = ({ children }) => {
     }
   };
 
+  const bookVendor = async (vendorId, booking) => {
+    try {
+      const response = await axios.post(`http://localhost:5000/vendors/${vendorId}/book`, booking);
+      const updatedVendors = vendors.map((vendor) => {
+        if (vendor._id === vendorId) {
+          return response.data;
+        }
+        return vendor;
+      });
+      setVendors(updatedVendors);
+    } catch (error) {
+      console.error("Error booking vendor", error);
+    }
+  };
+
   return (
-    <VendorContext.Provider value={{ vendors, addVendor }}>
+    <VendorContext.Provider value={{ vendors, addVendor, bookVendor }}>
       {children}
     </VendorContext.Provider>
   );

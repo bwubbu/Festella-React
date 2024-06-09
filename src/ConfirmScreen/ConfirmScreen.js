@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';  // Correct path
+import '../styles/Appo.css';  // Correct path
 
 const ConfirmScreen = (props) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -32,12 +32,14 @@ const ConfirmScreen = (props) => {
   };
 
   return (
-    <div className="container">
-      <h2>Confirm RSVP Details</h2>
-      <p>Name: {props.name}</p>
-      <p>Event: {props.dietaryRequirements}</p>
-      <button className="secondarybtn" onClick={props.onEdit}>✕</button>
-      <button className="next-btn" onClick={handleConfirm} disabled={isSubmitting}>Confirm</button>
+    <div className="rsvpp-container">
+      <h2 className="rsvpp-h2">Confirm RSVP Details</h2>
+      <p className="rsvpp-p">Name: {props.name}</p>
+      <p className="rsvpp-p">Event: {props.dietaryRequirements}</p>
+      <div className="rsvpp-button-group">
+        <button className="rsvpp-button rsvpp-secondarybtn" onClick={props.onEdit}>✕</button>
+        <button className="rsvpp-next-btn" onClick={handleConfirm} disabled={isSubmitting}>Confirm</button>
+      </div>
     </div>
   );
 };
