@@ -27,14 +27,9 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = async () => {
-    try {
-      await axios.get(`${process.env.REACT_APP_API_URL}/user/logout`, { withCredentials: true });
-      setUser(null);
-      setIsAuthenticated(false);
-    } catch (error) {
-      console.error('Error logging out user', error);
-    }
+  const logout = () => {
+    setUser(null);
+    setIsAuthenticated(false);
   };
 
   const editProfile = async (user) => {

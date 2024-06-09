@@ -19,13 +19,8 @@ function NavBar() {
     setDropdown(!dropdown);
   };
 
-  const handleLogout = async () => {
-    try {
-      await logout()
-    } catch (error) {
-      console.log(error)
-      alert('Failed to logout. Please try again.')
-    }
+  const handleLogout = () => {
+    logout();
   }
 
   return (

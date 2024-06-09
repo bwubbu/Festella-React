@@ -16,7 +16,7 @@ export const VendorProvider = ({ children }) => {
       }
     };
     fetchVendors();
-  });
+  }, []);
 
   const addVendor = async (vendor) => {
     try {
