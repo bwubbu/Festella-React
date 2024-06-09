@@ -6,11 +6,10 @@ import '../styles/Login.css';
 import '../App.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../components/AuthContext';
-import axios from 'axios';
 
 function Login() {
   const containerRef = useRef(null);
-  const { setUserData, changeAuthState } = useAuth();
+  const { login, register } = useAuth();
 
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
@@ -36,10 +35,8 @@ function Login() {
     e.preventDefault();
     console.log(loginData);
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, loginData, { withCredentials: true });
-      setUserData(response.data);
+      await login(loginData);
       alert('Login successful');
-      changeAuthState(true);
       navigate('/');
     } catch (error) {
       console.error('Error logging in user', error);
@@ -49,10 +46,8 @@ function Login() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/user/register`, registerData, { withCredentials: true });
-      setUserData(response.data);
+      await register(registerData);
       alert('User registered successfully');
-      changeAuthState(true);
       navigate('/');
     } catch (error) {
       console.error('Error registering user', error);
@@ -89,7 +84,7 @@ function Login() {
                 <input type="password" placeholder="Password" name="password" required onChange={handleLoginChange} />
               </div>
               <p className="forgot-password">
-                <Link to="/profile/forgotpassword">Forgot Password?</Link>
+                <Link to="/login/forgotpassword">Forgot Password?</Link>
               </p>
               <input type="submit" value="Login" className="btn solid" />
             </form>

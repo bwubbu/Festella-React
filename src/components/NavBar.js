@@ -26,7 +26,7 @@ function NavBar() {
           <NavLink to='/browse' activeclassname="active">Browse</NavLink>
           <NavLink to="/vendor" activeclassname="active">Vendor</NavLink>
           {isAuthenticated ? (
-            <NavLink to="/Profile" activeclassname="active">Profile</NavLink>
+            <NavLink to="/profile" activeclassname="active">Profile</NavLink>
           ) : (
             <NavLink to='/login' activeclassname="active">Sign In</NavLink>
           )}
@@ -37,7 +37,7 @@ function NavBar() {
         <NavLink to='/browse' activeclassname="active">Browse</NavLink>
         <NavLink to="/vendor" activeclassname="active">Vendor</NavLink>
         {isAuthenticated ? (
-          <NavLink to="/Profile" className="profile-border-button" activeclassname="active">Profile</NavLink>
+          <NavLink to="/profile" className="profile-border-button" activeclassname="active">Profile</NavLink>
         ) : (
           <NavLink to='/login' activeclassname="active">Sign In</NavLink>
         )}

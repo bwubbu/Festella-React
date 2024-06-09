@@ -17,7 +17,7 @@ router.post('/login', async (req, res) => {
         }
 
         if (await bcrypt.compare(req.body.password, user.password)) {
-            res.status(201).json({ message: 'Login successful' })
+            res.status(201).json(user)
         } else {
             res.status(400).json({ message: 'Invalid credentials' });
         }
@@ -40,7 +40,7 @@ router.post('/register', async (req, res) => {
 
 router.put('/edit', async (req, res) => {
     try {
-        const user = await User.findById(req.user._id);
+        const user = await User.findById(req.user.id);
         user.username = req.body.username;
         user.profile.name = req.body.name;
         user.profile.image = req.body.image;

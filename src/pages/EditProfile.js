@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
-import "../styles/Vendor.css";
+import "../styles/Profile.css";
 import { useAuth } from "../components/AuthContext";
 import axios from "axios";
 
 function EditProfile() {
   const { user, editProfile } = useAuth();
   const navigate = useNavigate();
-  const [userData, setUserData] = useState({
+  const [userData, setUserData] = useState(user ? {
+    id: user._id,
     name: user.profile.name,
     username: user.username,
-    password: "",
+    password: '',
     image: user.profile.image,
+  } : {
+    id: '',
+    name: '',
+    username: '',
+    password: '',
+    image: ''
   });
 
   const handleChange = (e) => {
@@ -31,6 +38,7 @@ function EditProfile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(user, userData)
     try {
       const response = await axios.put(`${process.env.REACT_APP_API_URL}/user/edit`, userData, { withCredentials: true });
       editProfile(response.data);
@@ -44,12 +52,12 @@ function EditProfile() {
 
   return (
     <div className="page-content">
-      <div className="form-register">
+      <div className="edit-profile">
         <div className='back'>
           <Link to='/profile' className='button'>Back</Link>
         </div>
         <h2>Change Your Profile Information</h2>
-        <form onSubmit={handleSubmit}>
+        <form className="edit-profile-form" onSubmit={handleSubmit}>
           <div className="form-row">
             <div>
               <label htmlFor="name">Name</label>
@@ -76,7 +84,7 @@ function EditProfile() {
               <input type="file" id="image" name="image" placeholder="Profile Picture" onChange={handleImage} />
             </div>
           </div>
-          <button type="submit">Register</button>
+          <button type="submit">Update Profile</button>
         </form>
       </div>
     </div>

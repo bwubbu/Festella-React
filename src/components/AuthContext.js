@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import axios from 'axios';
 
 export const AuthContext = createContext();
@@ -7,21 +7,9 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/user', { withCredentials: true });
-        setUser(response.data);
-      } catch (error) {
-        console.error('Error fetching user', error);
-      }
-    };
-    fetchUser();
-  }, []);
-
   const register = async (user) => {
     try {
-      const response = await axios.post('http://localhost:5000/user/register', user, { withCredentials: true });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/user/register`, user, { withCredentials: true });
       setUser(response.data);
       setIsAuthenticated(true);
     } catch (error) {
@@ -31,7 +19,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (user) => {
     try {
-      const response = await axios.post('http://localhost:5000/user/login', user, { withCredentials: true });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, user, { withCredentials: true });
       setUser(response.data);
       setIsAuthenticated(true);
     } catch (error) {
@@ -41,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await axios.get('http://localhost:5000/user/logout', { withCredentials: true });
+      await axios.get(`${process.env.REACT_APP_API_URL}/user/logout`, { withCredentials: true });
       setUser(null);
       setIsAuthenticated(false);
     } catch (error) {
@@ -51,23 +39,15 @@ export const AuthProvider = ({ children }) => {
 
   const editProfile = async (user) => {
     try {
-      const response = await axios.put('http://localhost:5000/user/edit', user, { withCredentials: true });
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/user/edit`, user, { withCredentials: true });
       setUser(response.data);
     } catch (error) {
       console.error('Error editing profile', error);
     }
   }
 
-  const setUserData = (user) => {
-    setUser(user);
-  }
-
-  const changeAuthState = (value) => {
-    setIsAuthenticated(value);
-  };
-
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, register, login, logout, editProfile, setUserData, changeAuthState }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, register, login, logout, editProfile }}>
       {children}
     </AuthContext.Provider>
   );

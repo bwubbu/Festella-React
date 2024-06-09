@@ -15,17 +15,18 @@ function Profile() {
           <div className="profile-and-registered-events">
             <div className="profile">
               <div className="profile-picture">
-                {user && user.profile ? (
+                {user && user.profile && user.profile.image !== '' ? (
                   <img src={user.profile.image} alt="User Profile" />
                 ) : (
                   <img src={profilePicture} alt="User Profile" />
                 )}
-                <Link to="/profile/editprofile" className="edit-profile">
-                <button>Edit Profile</button></Link>
+                <Link to="/profile/editprofile" className="edit-profile-button">
+                  <button>Edit Profile</button>
+                </Link>
               </div>
               <div className="profile-info">
                 <p>Hey there!</p>
-                {user && user.profile ? (
+                {user && user.profile && user.profile.name !== '' ? (
                   <h2>{user.profile.name}</h2>
                 ) : (
                   <h2>No Name</h2>
