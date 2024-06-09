@@ -95,7 +95,7 @@ class RSVPP extends Component {
 function withNavigate(Component) {
   return function WrappedComponent(props) {
     const navigate = useNavigate();
-    return <Component {...props} navigate={() => navigate('/booking-payment')} />;
+    return <Component {...props} navigate={() => navigate('/paymentf')} />;
   };
 }
 

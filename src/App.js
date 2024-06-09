@@ -6,6 +6,7 @@ import { VendorProvider } from './components/VendorContext';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import PaymentF from './pages/PaymentF'
 
 import EventForm from './components/EventForm';
 
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/profile/*" element={<UserRoutes />} />
                 <Route path="/login/*" element={<LoginRoutes />} />
                 <Route path="/rsvpp" element={<RSVPP />} />
+                <Route path="/paymentf" element={<PaymentF />} />
               </Routes>
             </div>
             <Footer />
