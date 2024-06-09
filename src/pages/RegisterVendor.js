@@ -56,7 +56,7 @@ function RegisterVendor() {
       <div className='back'>
         <Link to='/vendor' className='button'>Back</Link>
       </div>
-      <div className='form-register'>
+      <div className='vendor-register'>
         <h2>Personal Details</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-row">

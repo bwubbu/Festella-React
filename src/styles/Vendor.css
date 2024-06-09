@@ -156,7 +156,7 @@ button,
 }
 
 /* Vendor Register */
-.form-register {
+.vendor-register {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -201,7 +201,7 @@ button,
     justify-content: space-between;
     gap: 10px;
 
-    >div {
+    > div {
       flex: 1;
     }
   }
