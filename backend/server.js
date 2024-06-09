@@ -23,11 +23,11 @@ const corsOptions = {
   credentials: true
 };
 
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors(corsOptions));
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 
 // MongoDB connection
 const uri = process.env.MONGODB_URL;
