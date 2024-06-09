@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 import "../styles/Profile.css";
 import { useAuth } from "../components/AuthContext";
-import axios from "axios";
 
 function EditProfile() {
   const { user, editProfile } = useAuth();
@@ -40,8 +39,7 @@ function EditProfile() {
     e.preventDefault();
     console.log(user, userData)
     try {
-      const response = await axios.put(`${process.env.REACT_APP_API_URL}/user/edit`, userData, { withCredentials: true });
-      editProfile(response.data);
+      await editProfile(userData);
       alert('Profile edited successfully');
       navigate('/profile');
     } catch (error) {
