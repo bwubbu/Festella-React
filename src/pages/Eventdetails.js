@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { getEventById } from '../api/api';
 import '../styles/Events.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import ReviewList from '../components/ReviewList';
+import ReviewForm from '../components/ReviewForm';
 
 function EventDetails() {
   const location = useLocation();

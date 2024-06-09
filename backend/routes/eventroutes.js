@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Event = require('../model/eventmodels');
+const Event = require('../model/event');
 
 // Get top 6 events by rating
-router.get('/events/top', async (req, res) => {
+router.get('/top', async (req, res) => {
   try {
     // console.log('Fetching top events...');
     const events = await Event.find().sort({ rating: -1 }).limit(6);
@@ -16,7 +16,7 @@ router.get('/events/top', async (req, res) => {
 });
 
 // Get all events
-router.get('/events', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const events = await Event.find();
     res.json(events);
@@ -27,7 +27,7 @@ router.get('/events', async (req, res) => {
 });
 
 // Get an event by ID
-router.get('/events/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const event = await Event.findById(req.params.id);
     if (!event) return res.status(404).json({ message: 'Event not found' });
@@ -39,7 +39,7 @@ router.get('/events/:id', async (req, res) => {
 });
 
 // Create a new event
-router.post('/events', async (req, res) => {
+router.post('/', async (req, res) => {
   const event = new Event(req.body);
   try {
     const newEvent = await event.save();
@@ -51,7 +51,7 @@ router.post('/events', async (req, res) => {
 });
 
 // Update an event
-router.put('/events/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const updatedEvent = await Event.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(updatedEvent);
@@ -62,7 +62,7 @@ router.put('/events/:id', async (req, res) => {
 });
 
 // Delete an event
-router.delete('/events/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     await Event.findByIdAndDelete(req.params.id);
     res.json({ message: 'Event deleted' });
@@ -73,7 +73,7 @@ router.delete('/events/:id', async (req, res) => {
 });
 
 // Get the latest event ID
-router.get('/events/latest-id', async (req, res) => {
+router.get('/latest-id', async (req, res) => {
   try {
     const latestEvent = await Event.findOne().sort({ id: -1 }).exec();
     console.log('Latest Event:', latestEvent);  // Logging latest event

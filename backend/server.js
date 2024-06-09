@@ -32,7 +32,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 app.use('/rsvps', rsvpsRouter);
 app.use('/vendors', vendorRoutes);
 app.use('/user', userRoutes);
-app.use('/', eventRoutes);
+app.use('/events', eventRoutes);
 app.use('/', uploadRoutes);
 
 
