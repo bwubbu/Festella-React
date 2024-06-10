@@ -41,8 +41,17 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  const updateUser = async (updatedUser) => {
+    try {
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/user/update`, { id: user._id, updatedUser: updatedUser }, { withCredentials: true });
+      setUser(response.data);
+    } catch (error) {
+      console.error('Error updating user', error);
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, register, login, logout, editProfile }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, register, login, logout, editProfile, updateUser }}>
       {children}
     </AuthContext.Provider>
   );
