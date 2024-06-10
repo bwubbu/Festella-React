@@ -14,7 +14,7 @@ body, input {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.page-container {
+.login-page-container {
   position: relative;
   width: 100%;
   min-height: 80vh;
@@ -152,74 +152,76 @@ body, input {
   }
 }
 
-.panels-container {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.login-page-container {
+  .panels-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 
-  .panel {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-around;
-    text-align: center;
-    z-index: 6;
+    .panel {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-around;
+      text-align: center;
+      z-index: 6;
 
-    .content {
-      color: #fff;
-      transition: transform 0.9s ease-in-out;
-      transition-delay: 0.6s;
+      .content {
+        color: #fff;
+        transition: transform 0.9s ease-in-out;
+        transition-delay: 0.6s;
 
-      h3 {
-        font-weight: 600;
-        line-height: 1;
-        font-size: 2.8rem;
-      }
+        h3 {
+          font-weight: 600;
+          line-height: 1;
+          font-size: 2.8rem;
+        }
 
-      p {
-        font-size: 0.95rem;
-        padding: 0.7rem 0;
-      }
+        p {
+          font-size: 0.95rem;
+          padding: 0.7rem 0;
+        }
 
-      .btn.transparent {
-        margin: 0;
-        background: none;
-        border: 2px solid #fff;
-        width: 150px;
-        height: 40px;
-        font-weight: 600;
-        font-size: 0.8rem;
+        .btn.transparent {
+          margin: 0;
+          background: none;
+          border: 2px solid #fff;
+          width: 150px;
+          height: 40px;
+          font-weight: 600;
+          font-size: 0.8rem;
 
-        &:hover {
-          background-color: #fff;
-          color: #e75e8d;
+          &:hover {
+            background-color: #fff;
+            color: #e75e8d;
+          }
         }
       }
     }
-  }
 
-  .left-panel {
-    pointer-events: all;
-    padding: 3rem 17% 2rem 12%;
-  }
+    .left-panel {
+      pointer-events: all;
+      padding: 3rem 17% 2rem 12%;
+    }
 
-  .right-panel {
-    pointer-events: none;
-    padding: 3rem 12% 2rem 17%;
+    .right-panel {
+      pointer-events: none;
+      padding: 3rem 12% 2rem 17%;
 
-    .image, .content {
-      transform: translateX(800px);
+      .image, .content {
+        transform: translateX(800px);
+      }
     }
   }
 }
 
 /* Animation */
 
-.page-container.sign-up-mode {
+.login-page-container.sign-up-mode {
   &:before {
     transform: translate(100%, -50%);
     right: 52%;
@@ -257,7 +259,7 @@ body, input {
 }
 
 @media (max-width: 870px) {
-  .page-container {
+  .login-page-container {
     min-height: 800px;
     height: 100vh;
   }
@@ -269,7 +271,7 @@ body, input {
     transition: 1s 0.8s ease-in-out;
   }
 
-  .signin-signup, .page-container.sign-up-mode .signin-signup {
+  .signin-signup, .login-page-container.sign-up-mode .signin-signup {
     left: 50%;
   }
 
@@ -321,7 +323,7 @@ body, input {
     font-size: 0.7rem;
   }
 
-  .page-container:before {
+  .login-page-container:before {
     width: 1500px;
     height: 1500px;
     transform: translateX(-50%);
@@ -332,19 +334,19 @@ body, input {
     transition: 2s ease-in-out;
   }
 
-  .page-container.sign-up-mode:before {
+  .login-page-container.sign-up-mode:before {
     transform: translate(-50%, 100%);
     bottom: 32%;
     right: initial;
   }
 
-  .page-container.sign-up-mode .left-panel {
+  .login-page-container.sign-up-mode .left-panel {
     .image, .content {
       transform: translateY(-300px);
     }
   }
 
-  .page-container.sign-up-mode .right-panel {
+  .login-page-container.sign-up-mode .right-panel {
     .image, .content {
       transform: translateY(0px);
     }
@@ -354,7 +356,7 @@ body, input {
     transform: translateY(300px);
   }
 
-  .page-container.sign-up-mode .signin-signup {
+  .login-page-container.sign-up-mode .signin-signup {
     top: 5%;
     transform: translate(-50%, 0);
   }

@@ -4,10 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import '../styles/ForgotPassword.css';
-import '../App.css';
 
 function ForgotPassword() {
-  const containerRef = useRef(null);
   const navigate = useNavigate();
 
   const validate = (values) => {
@@ -35,7 +33,7 @@ function ForgotPassword() {
 
   return (
     <div className='page-content'>
-      <div className='page-container' ref={containerRef}>
+      <div className='forgot-password-container'>
         <div className='forms-container'>
           <div className='signin-signup'>
             <form onSubmit={formik.handleSubmit} className="sign-in-form">
