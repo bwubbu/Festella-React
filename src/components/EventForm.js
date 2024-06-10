@@ -1,10 +1,10 @@
+// frontend/src/components/EventForm.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/Events.css';
 
 const EventForm = () => {
   const [eventData, setEventData] = useState({
-    id: '',
     name: '',
     category: '',
     rating: '',
@@ -28,7 +28,7 @@ const EventForm = () => {
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
     const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-    const maxFileSize = 10 * 2000 * 2000;
+    const maxFileSize = 10 * 1024 * 1024; // 10MB
 
     for (const file of files) {
       if (!allowedTypes.includes(file.type)) {
@@ -81,12 +81,6 @@ const EventForm = () => {
       {error && <div className="error">{error}</div>}
       <div className="form-row">
         <div>
-          <label>ID:</label>
-          <input type="text" name="id" value={eventData.id} onChange={handleInputChange} required />
-        </div>
-      </div>
-      <div className="form-row">
-        <div>
           <label>Name:</label>
           <input type="text" name="name" value={eventData.name} onChange={handleInputChange} required />
         </div>
@@ -110,7 +104,7 @@ const EventForm = () => {
       </div>
       <div className="form-row">
         <div>
-          <label>Downloads:</label>
+          <label>Trending/Popularity:</label>
           <input type="text" name="downloads" value={eventData.downloads} onChange={handleInputChange} required />
         </div>
         <div>

@@ -46,6 +46,11 @@ function Home() {
     navigate('/add-event');
   };
 
+  const handleBrowseEvents = () => {
+    navigate('/browse');
+  };
+  
+
   return (
     <div>
       {/* Banner Section */}
@@ -65,7 +70,7 @@ function Home() {
               <h6>Welcome To Festella</h6>
               <h4><em>Browse</em> Our Latest Event Here</h4>
               <div className="main-button">
-                <a href="browse.html" className="button-style">Browse Now</a>
+              <button onClick={handleBrowseEvents} className="button-style">Browse Now</button>
               </div>
             </div>
           </div>
