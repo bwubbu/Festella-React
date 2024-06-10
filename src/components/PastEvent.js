@@ -1,63 +1,43 @@
-import React from 'react';
-import '../styles/Events.css'; 
-import cs from '../assets/images/cs.png';
-import taylor from '../assets/images/taylor.png';
-import pena from '../assets/images/Penacony.jpeg';
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/Events.css';
+import { EventContext } from './EventContext';
 
-const events = [
-  {
-    id: 1,
-    image: pena,
-    title: 'HSR Party',
-    subtitle: 'Night Out',
-    date: '24/08/2036',
-    status: 'Finish',
-    detailLink: 'past_event_details.html?id=1'
-  },
-  {
-    id: 2,
-    image: taylor,
-    title: 'Taylor Swift Watch Party',
-    subtitle: 'Night Out',
-    date: '22/06/2036',
-    status: 'Finished',
-    detailLink: '#'
-  },
-  {
-    id: 3,
-    image: cs,
-    title: 'CS Watch Party',
-    subtitle: 'Sport',
-    date: 'None',
-    status: 'Cancelled',
-    detailLink: '#'
-  }
-];
+const PastEvent = () => {
+  const { pastEvents } = useContext(EventContext);
+  const navigate = useNavigate();
 
-const GamingLibrary = () => {
+  const redirectToEventDetails = (eventId) => {
+    navigate('/browse/eventdetails', { state: { eventId: eventId } });
+  };
+
   return (
     <div className="gaming-library">
-      <h1>Your Past event</h1>
+      <h1>Past Events</h1>
       <div className="col-lg-12">
-        {events.map(event => (
-          <div className={`item ${event.id === events.length ? 'last-item' : ''}`} key={event.id}>
+        {pastEvents.map((event, index) => (
+          <div className={`item ${index === pastEvents.length - 1 ? 'last-item' : ''}`} key={event._id}>
             <ul>
-              <li><img src={event.image} alt="" className="templatemo-item"/></li>
-              <li><h4>{event.title}</h4><span>{event.subtitle}</span></li>
-              <li><h4>Date Attended</h4><span>{event.date}</span></li>
-              <li><h4>Currently</h4><span>{event.status}</span></li>
-              <li><div className="main-border-button"><a href={event.detailLink}>Details</a></div></li>
+              <li><img src={event.images[0]} alt="" className="templatemo-item" /></li>
+              <li><h4>{event.name}</h4><span>{event.category}</span></li>
+              <li><h4>Date Attended</h4><span>{new Date(event.date).toLocaleDateString()}</span></li>
+              <li><h4>Currently</h4><span>{event.isFinished ? 'Finished' : 'Ongoing'}</span></li>
+              <li>
+                <div className="main-border-button">
+                  <button onClick={() => redirectToEventDetails(event._id)}>Details</button>
+                </div>
+              </li>
             </ul>
           </div>
         ))}
       </div>
       <div className="col-lg-12">
-            <div className="view-library-button main-button">
-                <a href="profile.html">View All Your Events</a>
-            </div>
+        <div className="view-library-button main-button">
+          <a href="/profile">View All Your Events</a>
         </div>
+      </div>
     </div>
   );
 };
 
-export default GamingLibrary;
+export default PastEvent;

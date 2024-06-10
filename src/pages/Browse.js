@@ -60,7 +60,7 @@ const Browse = () => {
         <div className="featured-events-container">
           <div className="featured-games header-text">
             <div className="heading-section">
-              <h4><em>Featured</em> Events</h4>
+              <h2><span className='color-text'>Featured</span> Events</h2>
             </div>
             <Slider {...sliderSettings}>
               <div className="item">
@@ -73,7 +73,7 @@ const Browse = () => {
                 <h4>Taylor Era Concert<br /><span>10K Sold</span></h4>
                 <ul>
                   <li><i className="fa fa-star"></i> 4.8</li>
-                  <li><i className="fa fa-play"></i> 1M</li>
+                  <li><i className="fa fa-eye"></i> 1M</li>
                 </ul>
               </div>
               <div className="item">

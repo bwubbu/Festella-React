@@ -14,6 +14,7 @@ const EventForm = () => {
     description: '',
     ticketSold: '',
     totalTicket: '',
+    date: ''
   });
 
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -62,6 +63,8 @@ const EventForm = () => {
       }));
 
       const newEvent = { ...eventData, images: imageUrls.sort() }; // sort the images array
+      newEvent.isFinished = new Date(newEvent.date) < new Date();
+
       await axios.post('http://localhost:5000/events', newEvent);
 
       alert('Event added successfully');
@@ -135,6 +138,10 @@ const EventForm = () => {
         <div>
           <label>Total Tickets:</label>
           <input type="number" name="totalTicket" value={eventData.totalTicket} onChange={handleInputChange} required />
+        </div>
+        <div>
+          <label>Date:</label>
+          <input type="date" name="date" value={eventData.date} onChange={handleInputChange} required />
         </div>
       </div>
       <button type="submit">Add Event</button>

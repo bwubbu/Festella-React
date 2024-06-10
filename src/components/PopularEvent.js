@@ -1,26 +1,13 @@
-import React, { useEffect, useState } from 'react';
+// frontend/src/components/MostPopularEvents.js
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getTopEvents } from '../api/api';
+import { EventContext } from './EventContext';
 import '../styles/Events.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-const MostPopularEvents = () => {
+const PopularEvents = () => {
   const navigate = useNavigate();
-  const [events, setEvents] = useState([]);
-
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await getTopEvents();
-        console.log('Fetched events:', response.data); // Debugging
-        setEvents(response.data);
-      } catch (error) {
-        console.error('Error fetching events:', error);
-      }
-    };
-
-    fetchEvents();
-  }, []);
+  const { topEvents } = useContext(EventContext);
 
   const redirectToEventDetails = (eventId) => {
     navigate('/browse/eventdetails', { state: { eventId: eventId } });
@@ -29,10 +16,10 @@ const MostPopularEvents = () => {
   return (
     <div className="most-popular">
       <div className="heading-section">
-        <h4><em>Most Popular</em> Events</h4>
+        <h4><span className='home-text'>Most Popular</span> Events</h4>
       </div>
       <div className="row">
-        {events.map((event) => (
+        {topEvents.map((event) => (
           <div key={event._id} className="col-lg-3 col-sm-6">
             <div className="item" onClick={() => redirectToEventDetails(event._id)}>
               {event.images && event.images.length > 0 && (
@@ -51,4 +38,4 @@ const MostPopularEvents = () => {
   );
 };
 
-export default MostPopularEvents;
+export default PopularEvents;

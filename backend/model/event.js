@@ -11,7 +11,9 @@ const eventSchema = new mongoose.Schema({
   videoLink: { type: String, required: true },
   description: { type: String, required: true },
   ticketSold: { type: Number, required: true },
-  totalTicket: { type: Number, required: true }
+  totalTicket: { type: Number, required: true },
+  date: { type: Date, required: true },
+  isFinished: { type: Boolean, default: false }
 }, { collection: 'events' });
 
 const Event = mongoose.model('events', eventSchema);

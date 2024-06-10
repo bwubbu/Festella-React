@@ -8,6 +8,11 @@
     position: relative; 
     transition: background-image 0.6s ease-in-out;
   }
+
+  .heading-section .home-text{
+    text-decoration: underline;
+    color:#e75e8d;
+  }
   
   .main-banner h6 {
     font-size: 20px;
@@ -95,30 +100,40 @@
   
   
 /*Browse Event Style */
-.browse-container {
+
+  .browse-container {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Adjust as needed */
-    padding: 20px; /* Add padding if necessary */
+    gap: 20px; 
+    padding: 20px; 
   }
   
   .featured-and-artist-container {
     display: flex;
     justify-content: space-between;
-    gap: 20px; /* Adjust as needed */
+    gap: 20px; 
   }
   
   .featured-events-container {
-    flex: 2; /* Adjust as necessary */
+    flex: 2; 
   }
   
   .top-artist {
-    flex: 1; /* Adjust as necessary */
+    flex: 1; 
   }
   
   .all-events-container { 
-    border-radius: 8px; /* Adjust as necessary */
-    background-color: #1f2122; /* Adjust as necessary */
+    border-radius: 8px; 
+    background-color: #1f2122; 
+  }
+
+  .heading-section{
+    font-size: 25px;
+  }
+
+  .heading-section .color-text{
+    color: #ec6090;
+    text-decoration:underline;
   }
   
 
@@ -235,21 +250,21 @@
 
   /* Add Event Style */
   .vendor-call-section {
-    background-color: #1f2122; /* Dark background for the section */
+    background-color: #1f2122; 
     padding: 30px;
     border-radius: 23px;
-    color: #fff; /* Light text color for contrast */
+    color: #fff; 
     text-align: center;
-    margin-top: 60px; /* Provide some spacing from the previous section */
+    margin-top: 60px; 
   }
   
   .vendor-call-content h2 {
     margin: 10px 0;
-    color: #ec6090; /* Accent color similar to your theme */
+    color: #ec6090; 
   }
   
   .create-event-button {
-    background-color: #ec6090; /* Pink background for the button */
+    background-color: #ec6090; 
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -257,16 +272,16 @@
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    transition: background-color 0.3s; 
 }
 
 .create-event-button:hover {
-    background-color: #fff; /* White background on hover */
-    color: #ec6090; /* Pink text color on hover for better visibility */
+    background-color: #fff; 
+    color: #ec6090; 
 }
 
   .create-event-button .plus-icon {
-    color: #ec6090; /* Accent color for the plus icon */
+    color: #ec6090; 
     margin-right: 5px;
   }
   
@@ -278,8 +293,8 @@
 
   /* Past Event Style */
   .gaming-library {
-    width: 80%; /* Adjust width to your preference, e.g., 80% of the parent container */
-    margin: 60px auto; /* Centers the container with automatic margins */
+    width: 80%; 
+    margin: 60px auto; 
     padding: 30px;
     background-color: #1f2122;
     border-radius: 23px;
@@ -288,8 +303,8 @@
   .gaming-library .item {
     border-bottom: 1px solid #27292a;
     padding-bottom: 20px;
-    padding-left: 10px; /* Reduced left padding */
-    padding-right: 10px; /* Reduced right padding */
+    padding-left: 10px; 
+    padding-right: 10px; 
   }
   
   .gaming-library .last-item {
@@ -303,17 +318,17 @@
   }
   
   .gaming-library .item ul {
-    display: flex; /* Add flexbox */
-    align-items: center; /* Vertically center all children */
-    flex-wrap: wrap; /* Allow items to wrap */
+    display: flex; 
+    align-items: center;
+    flex-wrap: wrap; 
     justify-content: space-between;
   }
   
   .gaming-library .item ul li {
-    margin-top: 5px; /* Smaller top margin to push content up */
-    display: block; /* Switch to block to fill the flex container */
-    flex: 1; /* Each takes equal width */
-    padding: 10px; /* Padding for spacing */
+    margin-top: 5px; 
+    display: block; 
+    flex: 1; 
+    padding: 10px; 
   }
   
   .gaming-library .item ul li img {
@@ -325,14 +340,14 @@
   }
   
   .gaming-library .item ul li:first-child {
-    flex: 0 0 100px; /* Do not grow, do not shrink, initial width 100px */
+    flex: 0 0 100px; 
   }
   
   .gaming-library .item ul li:last-child {
-    flex: 0 0 120px; /* Adjust last item width for alignment */
-    display: flex; /* Using flex to align the button */
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
+    flex: 0 0 120px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
   }
   
   
@@ -351,7 +366,14 @@
     margin-bottom: -53px;
   }
   
-  .main-border-button a {
+  .main-border-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0; 
+}
+
+.main-border-button a {
     display: inline-block;
     padding: 10px 20px;
     background-color: #ec6090;
@@ -359,29 +381,33 @@
     border-radius: 5px;
     transition: background-color 0.3s ease;
     text-decoration: none;
-  }
+}
   
-  .main-border-button a:hover {
-    background-color: #1f2122;
-  }
-  
+  .view-library-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0; /* Adjust the padding as needed */
+}
+
   .view-library-button a {
-    display: inline-block;
-    padding: 12px 25px;
-    background-color: #ec6090;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 15px;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-    border: none;
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #ec6090;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 15px;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+      border: none;
   }
-  
-  .view-library-button a:hover, .view-library-button a:focus {
-    background-color: #ffffff;
-    color: #ec6090;
-    border: 1px solid #ec6090;
+
+  .view-library-button a:hover,
+  .view-library-button a:focus {
+      background-color: #ffffff;
+      color: #ec6090;
+      border: 1px solid #ec6090;
   }
   
 
@@ -681,6 +707,14 @@
   .pagination button:hover {
     background-color: #ec6090; /* Hover color */
     color: #fff; /* Ensure the number remains visible */
+  }
+
+  .all-events .heading-section {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+  .all-events .heading-section .color-text {
+    color: #ec6090;
   }
   
 
