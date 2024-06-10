@@ -302,75 +302,74 @@
     padding: 30px;
     background-color: #1f2122;
     border-radius: 23px;
-  }
+}
   
-  .gaming-library .item {
+.gaming-library .item {
     border-bottom: 1px solid #27292a;
     padding-bottom: 20px;
     padding-left: 10px; 
     padding-right: 10px; 
-  }
+}
   
-  .gaming-library .last-item {
-    margin-bottom: 30px;
-  }
+.gaming-library .last-item {
+    margin-bottom: 10px;
+}
   
-  .profile-library .last-item {
+.profile-library .last-item {
     border-bottom: none;
     padding-bottom: 0px;
     margin-bottom: 0px;
-  }
+}
   
-  .gaming-library .item ul {
+.gaming-library .item ul {
     display: flex; 
     align-items: center;
     flex-wrap: wrap; 
     justify-content: space-between;
-  }
+}
   
-  .gaming-library .item ul li {
+.gaming-library .item ul li {
     margin-top: 5px; 
     display: block; 
     flex: 1; 
     padding: 10px; 
-  }
+}
   
-  .gaming-library .item ul li img {
+.gaming-library .item ul li img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     margin-top: 0px;
     border-radius: 23px;
-  }
+}
   
-  .gaming-library .item ul li:first-child {
+.gaming-library .item ul li:first-child {
     flex: 0 0 100px; 
-  }
+}
   
-  .gaming-library .item ul li:last-child {
+.gaming-library .item ul li:last-child {
     flex: 0 0 120px; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
-  }
+}
   
-  
-  .gaming-library .item ul li h4 {
+.gaming-library .item ul li h4 {
     font-size: 15px;
     margin-bottom: 5px;
-  }
+}
   
-  .gaming-library .item ul li span {
+.gaming-library .item ul li span {
     color: #666;
     font-size: 14px;
-  }
+}
   
-  .gaming-library .main-button {
+.gaming-library .main-button {
     text-align: center;
     margin-bottom: -53px;
-  }
+}
   
-  .main-border-button {
+.main-border-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -379,7 +378,6 @@
 
 .main-border-button a {
     display: inline-block;
-    padding: 10px 20px;
     background-color: #ec6090;
     color: #fff;
     border-radius: 5px;
@@ -387,32 +385,31 @@
     text-decoration: none;
 }
   
-  .view-library-button-container {
+.view-library-button-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 0; /* Adjust the padding as needed */
 }
 
-  .view-library-button a {
-      display: inline-block;
-      padding: 12px 25px;
-      background-color: #ec6090;
-      color: #ffffff;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 15px;
-      text-decoration: none;
-      transition: background-color 0.3s, color 0.3s;
-      border: none;
-  }
+.view-library-button a {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #ec6090;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    border: none;
+}
 
-  .view-library-button a:hover,
-  .view-library-button a:focus {
-      background-color: #ffffff;
-      color: #ec6090;
-      border: 1px solid #ec6090;
-  }
+.view-library-button a:hover,
+.view-library-button a:focus {
+    background-color: #ffffff;
+    color: #ec6090;
+}
+
   
 
   /* Featured Event Style */

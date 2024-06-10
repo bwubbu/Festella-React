@@ -2,13 +2,23 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Events.css';
 import { EventContext } from './EventContext';
+import { useAuth } from './AuthContext';
 
 const PastEvent = () => {
   const { pastEvents } = useContext(EventContext);
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const redirectToEventDetails = (eventId) => {
     navigate('/browse/eventdetails', { state: { eventId: eventId } });
+  };
+
+  const handleViewAllEvents = () => {
+    if (isAuthenticated) {
+      navigate('/profile');
+    } else {
+      navigate('/signin');
+    }
   };
 
   return (
@@ -32,8 +42,10 @@ const PastEvent = () => {
         ))}
       </div>
       <div className="col-lg-12">
-        <div className="view-library-button main-button">
-          <a href="/profile">View All Your Events</a>
+        <div className="view-library-button-container">
+          <div className="view-library-button">
+            <a href="#!" onClick={handleViewAllEvents}>View All Your Events</a>
+          </div>
         </div>
       </div>
     </div>
