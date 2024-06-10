@@ -44,7 +44,7 @@ const Styles = styled.div`
 
   form {
     text-align: left;
-    max-width: 600px;  // Increased max-width for form
+    max-width: 700px;  // Increased max-width for form
     width: 100%;
     margin: 0 auto;
     border: 1px solid #ccc;
