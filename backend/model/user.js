@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const profileSchema = new mongoose.Schema({
     name: String,
     image: String,
+    bookmarkedEvents: [String],
+    registeredEvents: [String]
 })
 
 const Profile = mongoose.model('Profile', profileSchema);
