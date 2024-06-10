@@ -1,55 +1,57 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import '../styles/ForgotPassword.css';
 import '../App.css';
 
 function ForgotPassword() {
   const containerRef = useRef(null);
+  const navigate = useNavigate();
 
-  const validateEmail = (email) => {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    if (name === 'email') {
-      if (!validateEmail(value)) {
-        
-      } else {
-        
-      }
-    } else if (value.trim() === '') {
-      
+  const validate = (values) => {
+    const errors = {};
+    if (!values.email) {
+      errors.email = 'Required';
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+    ) {
+      errors.email = 'Invalid email address';
     }
+    return errors;
   };
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+    },
+    validate,
+    onSubmit: (values) => {
+      alert('Password reset email sent to ', values.email, ' if the email is registered with us');
+      navigate('/login/verification');
+    },
+  });
 
   return (
     <div className='page-content'>
       <div className='page-container' ref={containerRef}>
         <div className='forms-container'>
           <div className='signin-signup'>
-            <form action="#" className="sign-in-form">
-              <h1 className="title">Sign in</h1>
+            <form onSubmit={formik.handleSubmit} className="sign-in-form">
+              <h1 className="title">Forgot Password</h1>
+              <p>Please enter your email to request password reset authentication.</p>
               <div className="input-field">
-                <FontAwesomeIcon className="icon" icon={faUser} color="black"/>
-                <input type="text" placeholder="Username" name="username" required onChange={handleInputChange} />
+                <FontAwesomeIcon className="icon" icon={faEnvelope} color="black" />
+                <input type="text" placeholder="Email" name="email" required onChange={formik.handleChange} />
               </div>
-              <div className="input-field">
-                <FontAwesomeIcon icon={faLock} color="black"/>
-                <input type="password" placeholder="Password" name="password" required onChange={handleInputChange} />
-              </div>
-              <p className="forgot-password">
-                <a href="#">Forgot Password?</a>
-              </p>
-              <input type="submit" value="Login" className="btn solid" />
+              <input type="submit" value="Submit" className="btn solid" />
             </form>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default ForgotPassword;

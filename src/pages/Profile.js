@@ -1,4 +1,4 @@
-import React, {  } from "react";
+import React, { } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import "../styles/Profile.css";
@@ -39,22 +39,34 @@ function Profile() {
                 <h2>Events</h2>
               </div>
               <div className="registered-events-container">
-                
-              </div>
+                {user && user.profile && user.profile.registeredEvents && user.profile.registeredEvents.length > 0 ? (
+                  <div></div>
+                ): (
+                  <div>
+                    <p>No events registered</p>
+                  </div>
+                )}
             </div>
           </div>
-          <div className="bookmarked-events">
-            <div className="title">
-              <h2 className="coloured-font">Bookmarked</h2>
-              <h2>Events</h2>
-            </div>
-            <div className="bookmarked-events-container">
-
-            </div>
+        </div>
+        <div className="bookmarked-events">
+          <div className="title">
+            <h2 className="coloured-font">Bookmarked</h2>
+            <h2>Events</h2>
+          </div>
+          <div className="bookmarked-events-container">
+            {user && user.profile && user.profile.bookmarkedEvents && user.profile.bookmarkedEvents.length > 0 ? (
+              <div></div>
+            ) : (
+              <div>
+                <p>No events bookmarked</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </div>
+    </div >
   );
 }
 
