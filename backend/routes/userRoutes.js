@@ -56,4 +56,39 @@ router.put('/edit', async (req, res) => {
     }
 });
 
+// Bookmark an event
+router.post('/bookmark/:eventId', async (req, res) => {
+    const { eventId } = req.params;
+    const userId = req.body.userId; // Assumes user ID is sent in the body
+  
+    try {
+      const user = await User.findById(userId);
+      if (!user) return res.status(404).json({ message: 'User not found' });
+  
+      if (!user.profile.bookmarks.includes(eventId)) {
+        user.profile.bookmarks.push(eventId);
+        await user.save();
+      }
+  
+      res.status(200).json(user.profile.bookmarks);
+    } catch (error) {
+      res.status(500).json({ message: 'Error bookmarking event', error });
+    }
+  });
+  
+  // Get bookmarked events for a user
+  router.get('/bookmarks/:userId', async (req, res) => {
+    const { userId } = req.params;
+  
+    try {
+      const user = await User.findById(userId).populate('profile.bookmarks');
+      if (!user) return res.status(404).json({ message: 'User not found' });
+  
+      res.status(200).json(user.profile.bookmarks);
+    } catch (error) {
+      res.status(500).json({ message: 'Error fetching bookmarks', error });
+    }
+  });
+  
+
 module.exports = router;

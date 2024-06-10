@@ -6,14 +6,15 @@ function InviteForm(props) {
   const [name, setName] = useState('');
   const [dietaryRequirements, setDietaryRequirements] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [events, setEvents] = useState([]); // State to store events
+  const [events, setEvents] = useState([]); // State to store filtered events
 
   useEffect(() => {
     // Fetch events when the component mounts
     const fetchEvents = async () => {
       try {
         const response = await getEvents();
-        setEvents(response.data);
+        const filteredEvents = response.data.filter(event => !event.isFinished && new Date(event.date) >= new Date());
+        setEvents(filteredEvents);
       } catch (error) {
         console.error('Failed to fetch events', error);
       }
@@ -70,4 +71,3 @@ function InviteForm(props) {
 }
 
 export default InviteForm;
-

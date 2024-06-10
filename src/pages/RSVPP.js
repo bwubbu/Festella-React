@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import logo from '../assets/friedhead.png';
 import InviteForm from '../InviteForm/InviteForm';
 import ConfirmScreen from '../ConfirmScreen/ConfirmScreen';
@@ -11,7 +12,23 @@ class RSVPP extends Component {
     toggleRsvps: false,
     toggleIcon: "⊕",
     rsvps: [],
+    filteredEvents: [],
     errorMessage: ''
+  }
+
+  componentDidMount() {
+    this.fetchEvents();
+  }
+
+  fetchEvents = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/events'); // Replace with your backend URL
+      const events = response.data;
+      const filteredEvents = events.filter(event => !event.isFinished && new Date(event.date) >= new Date());
+      this.setState({ rsvps: filteredEvents });
+    } catch (error) {
+      console.error('Error fetching events:', error);
+    }
   }
 
   onSubmit = (name, dietaryRequirements) => {
@@ -52,6 +69,7 @@ class RSVPP extends Component {
       />
     ) : (
       <InviteForm
+        events={rsvps} // Pass the filtered events to InviteForm
         showConfirmScreen={this.onSubmit}
         errorMessage={errorMessage}
       />
@@ -59,9 +77,9 @@ class RSVPP extends Component {
 
     const rsvpsList = toggleRsvps && (
       rsvps.length ? (
-        <ul>{rsvps.map((r) => <li key={r.name}>{r.name}, {r.dietaryRequirements}</li>)}</ul>
+        <ul>{rsvps.map((r) => <li key={r._id}>{r.name}, {r.dietaryRequirements}</li>)}</ul>
       ) : (
-        <p>No guests so far</p>
+        <p>No upcoming events</p>
       )
     );
 

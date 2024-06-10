@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { getEventById } from '../api/api';
+import { AuthContext } from '../components/AuthContext';
 import '../styles/Events.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import ReviewList from '../components/ReviewList';
@@ -11,6 +12,7 @@ function EventDetails() {
   const { eventId } = location.state || { eventId: 1 };
   const [eventDetails, setEventDetails] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -26,6 +28,32 @@ function EventDetails() {
 
     fetchEvent();
   }, [eventId]);
+
+  const handleBookmark = async () => {
+    if (!user) {
+      alert('You need to sign in to bookmark events');
+      return;
+    }
+
+    try {
+      const response = await fetch(`/bookmark/${eventId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: user._id }), // Send user ID in the body
+        credentials: 'include', // Ensure cookies are sent
+      });
+
+      if (response.ok) {
+        alert('Event bookmarked successfully');
+      } else {
+        alert('Failed to bookmark event');
+      }
+    } catch (error) {
+      console.error('Error bookmarking event:', error);
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -44,7 +72,7 @@ function EventDetails() {
     videoLink,
     description,
     ticketSold = 0,
-    totalTicket = 1000000
+    totalTicket = 1000000,
   } = eventDetails;
 
   const percentageSold = (ticketSold / totalTicket) * 100;
@@ -93,11 +121,11 @@ function EventDetails() {
                 </div>
               </div>
               <div className="main-border-button">
-              <Link to="/rsvpp">Buy the ticket now!</Link>
+                <Link to="/rsvpp">Buy the ticket now!</Link>
               </div>
               <div className="side-by-side-buttons">
                 <div className="main-border-button">
-                  <a href="#">Add to your list</a>
+                  <button onClick={handleBookmark}>Bookmark Event</button>
                 </div>
                 <div className="main-border-button">
                   <a href="#">Share the event</a>

@@ -33,7 +33,7 @@ function App() {
                   <Route path="/profile/*" element={<UserRoutes />} />
                   <Route path="/login/*" element={<LoginRoutes />} />
                   <Route path="/rsvpp" element={<RSVPP />} />
-                  <Route path="/browse/eventdetails" element={<EventDetails />} /> {/* Add this route */}
+                  <Route path="/browse/eventdetails" element={<EventDetails />} /> 
                   <Route path="/paymentf" element={<PaymentF />} />
               </Routes>
               </div>

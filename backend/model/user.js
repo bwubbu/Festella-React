@@ -10,13 +10,12 @@ const profileSchema = new mongoose.Schema({
 const Profile = mongoose.model('Profile', profileSchema);
 
 const userSchema = new mongoose.Schema({
-    username: String,
-    email: String,
-    password: String,
-    profile: Profile.schema
+  username: String,
+  email: String,
+  password: String,
+  profile: { type: profileSchema, default: {} }
 });
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = Profile;
-module.exports = User;
+module.exports = { Profile, User };
