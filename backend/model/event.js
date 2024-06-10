@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
-  id: { type: Number, required: true },
+  /*id: { type: Number, required: true }, */
   name: { type: String, required: true },
   category: { type: String, required: true },
   rating: { type: Number, required: true },

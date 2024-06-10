@@ -73,7 +73,6 @@ function EventDetails() {
             <ul>
               <li><i className="fa fa-star"></i> {rating}</li>
               <li><i className="fa fa-ticket"></i> {downloads}</li>
-              <li><i className="fa fa-microphone"></i> Singer</li>
             </ul>
           </div>
         </div>
