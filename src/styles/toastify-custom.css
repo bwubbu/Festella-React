@@ -29,21 +29,30 @@
     margin-right: 8px;
   }
   
+
   .Toastify__close-button {
     display: flex;
     align-items: center;
     justify-content: center;
     color: #333;
     font-size: 16px;
-    width: 24px;  /* Adjusted width for better centering */
-    height: 24px;  /* Adjusted height for better centering */
-    align-self: center; /* Center vertically */
-    margin: 0 8px 0 16px;  /* Adjusted margin for better spacing */
+    width: 24px; /* Ensure width is appropriate */
+    height: 24px; /* Ensure height is appropriate */
+    margin: 0 8px 0 16px; /* Adjust margin for better spacing */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
   }
+
+  
   
   .Toastify__close-button > svg {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
+    display: block; /* Ensures the SVG takes up the entire area */
+    margin: -7px 16px 0px -6px;
   }
   
   .Toastify__toast-body {

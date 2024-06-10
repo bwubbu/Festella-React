@@ -128,9 +128,11 @@ body, html {
 
 .rsvpp-textfield {
   border: 2px solid white;
-  border-radius: 0px;
+  border-radius: 5px;
   font-size: 14px;
   width: 100%;  /* Ensure full width for centering */
+  height: 36px;
+  padding: 10px 15px;
 }
 
 .rsvpp-colour-section {
