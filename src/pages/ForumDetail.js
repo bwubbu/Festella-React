@@ -50,7 +50,7 @@ const ForumDetail = () => {
     try {
       const response = await axios.post(`http://localhost:5000/posts/${postId}/comments`, {
         content: commentContent,
-        user: user.userId,  // Send user ID with the comment content
+        user: user._id,  // Send user ID with the comment content
       }, { headers: { Authorization: `Bearer ${isAuthenticated}` } });
       setPost(prevPost => ({
         ...prevPost,

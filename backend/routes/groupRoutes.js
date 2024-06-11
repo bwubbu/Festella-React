@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Group = require('../model/group');
-const User = require('../model/user');
-const Event = require('../model/event');
+const { User } = require('../model/user'); // Correct import
+
 // Fetch groups for a user
 router.get('/:userId', async (req, res) => {
   try {
@@ -42,7 +42,7 @@ router.post('/:groupId/invite', async (req, res) => {
   try {
     const { username } = req.body;
     const group = await Group.findById(req.params.groupId);
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username }); // Ensure User.findOne works correctly
     if (!user) {
       return res.status(400).json({ message: 'User not found' });
     }
@@ -63,19 +63,16 @@ router.post('/:groupId/addEvent', async (req, res) => {
     const { groupId } = req.params;
     const { eventId } = req.body;
 
-    // Find the group by ID
     const group = await Group.findById(groupId);
     if (!group) {
       return res.status(404).json({ message: 'Group not found' });
     }
 
-    // Find the event by ID (assuming you have an Event model)
     const event = await Event.findById(eventId);
     if (!event) {
       return res.status(404).json({ message: 'Event not found' });
     }
 
-    // Add the event to the group's events array if it's not already there
     if (!group.events.includes(eventId)) {
       group.events.push(eventId);
       await group.save();
