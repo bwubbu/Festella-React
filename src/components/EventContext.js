@@ -1,5 +1,5 @@
 // frontend/src/context/EventContext.js
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { getTopEvents, getEvents } from '../api/api';
 
 export const EventContext = createContext();
@@ -43,3 +43,5 @@ export const EventProvider = ({ children }) => {
     </EventContext.Provider>
   );
 };
+
+export const useEvent = () => useContext(EventContext);

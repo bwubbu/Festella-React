@@ -13,6 +13,8 @@ const vendorRoutes = require('./routes/vendorRoutes');
 const userRoutes = require('./routes/userRoutes');
 const eventRoutes = require('./routes/eventroutes');
 const uploadRoutes = require('./routes/upload');
+const forumRoutes = require('./routes/forumRoutes');
+const groupRoutes = require('./routes/groupRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -49,6 +51,8 @@ app.use('/rsvps', rsvpsRouter);
 app.use('/vendors', vendorRoutes);
 app.use('/user', userRoutes);
 app.use('/events', eventRoutes);
+app.use('/posts', forumRoutes);
+app.use('/api/groups', groupRoutes);
 app.use('/', uploadRoutes);
 
 app.post("/api/stripe-payment", async (req, res) => {
