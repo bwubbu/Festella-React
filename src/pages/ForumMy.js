@@ -18,7 +18,7 @@ const ForumMy = () => {
           const response = await axios.get(`${process.env.REACT_APP_API_URL}/posts`, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
           });
-          const myPosts = response.data.filter(post => post.user === user.userId);
+          const myPosts = response.data.filter(post => post.user === user._id);
           setPosts(myPosts);
         } catch (error) {
           console.error('Error fetching user posts:', error);

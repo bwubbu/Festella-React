@@ -7,7 +7,6 @@ import '../styles/forum.css';
 
 const CreatePostForm = () => {
   const { isAuthenticated, user } = useAuth();
-  const [users, setUsers] = useState({});
   const navigate = useNavigate();
 
   const [postData, setPostData] = useState({
@@ -38,7 +37,7 @@ const CreatePostForm = () => {
     formData.append('title', postData.title);
     formData.append('content', postData.content);
     formData.append('category', postData.category);
-    formData.append('user', user.userId);
+    formData.append('user', user._id); // Make sure to use the correct user ID
     if (postData.image) {
       formData.append('image', postData.image);
     }
@@ -53,6 +52,7 @@ const CreatePostForm = () => {
 
       console.log('Post created successfully:', response.data);
       alert('Post created successfully');
+      navigate('/forum'); // Navigate to the forum or any other page after post creation
     } catch (error) {
       console.error('Error creating post:', error);
       alert('Failed to create post');

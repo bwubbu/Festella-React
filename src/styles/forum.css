@@ -579,5 +579,70 @@ img.post-image {
   max-height: auto;
 }
 
-  
-  
+.create-group form {
+  display: flex;
+  align-items: center;
+}
+
+.create-group input[type="text"] {
+  width: 50%;
+  height: auto;
+  padding: 10px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+}
+
+.create-group button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: #e75e8d; /* Change the color as needed */
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  width: auto;
+}
+
+.create-group button:hover {
+  background-color: #f8f8f8; /* Change the hover color as needed */
+}
+
+.create-group form,
+.invite-users form {
+  display: flex;
+  align-items: center;
+}
+
+.create-group input[type="text"],
+.invite-users input[type="text"],
+.invite-users select {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+}
+
+.create-group button,
+.invite-users button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: #e75e8d; /* Adjust as needed */
+  color: white;
+  width:auto;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.create-group button:hover,
+.invite-users button:hover {
+  background-color: #f8f8f8; /* Adjust as needed */
+}

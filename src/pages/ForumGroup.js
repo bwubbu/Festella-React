@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useAuth } from '../components/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEvent } from '../components/EventContext';
+import Popup from '../components/Popup';
 
 function ForumGroup() {
   const { isAuthenticated, user } = useAuth();
@@ -13,6 +14,8 @@ function ForumGroup() {
   const [groupName, setGroupName] = useState("");
   const [inviteUsername, setInviteUsername] = useState("");
   const [selectedGroupId, setSelectedGroupId] = useState("");
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedGroupMembers, setSelectedGroupMembers] = useState([]);
   const navigate = useNavigate();
   const { allEvents } = useEvent();
 
@@ -26,9 +29,10 @@ function ForumGroup() {
     try {
       const response = await axios.get('http://localhost:5000/api/groups');
       const allGroups = response.data;
-      const userGroups = allGroups.filter(group => group.members.includes(user.userId));
+      const userGroups = allGroups.filter(group => group.members.includes(user.userId || user._id));
       setGroups(allGroups);
       setUserGroups(userGroups);
+      console.log('Groups:', userGroups);
     } catch (error) {
       console.error('Error fetching groups:', error.message);
     }
@@ -43,7 +47,9 @@ function ForumGroup() {
 
     try {
       const response = await axios.post('http://localhost:5000/api/groups', {
-        name: groupName, userId: user.userId });
+        name: groupName,
+        userId: user.userId || user._id
+      });
       setGroups([...groups, response.data]);
       setUserGroups([...userGroups, response.data]);
       setGroupName('');
@@ -77,6 +83,16 @@ function ForumGroup() {
     return allEvents.find(event => event._id === eventId);
   };
 
+  const handleGroupClick = async (groupId) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/groups/${groupId}/members`);
+      setSelectedGroupMembers(response.data.members);
+      setIsPopupOpen(true);
+    } catch (error) {
+      console.error('Error fetching group members:', error.message);
+    }
+  };
+
   if (!isAuthenticated || !user) {
     return <div>Please log in to view and manage your groups.</div>;
   }
@@ -88,7 +104,16 @@ function ForumGroup() {
         <div className="most-popular">
           {userGroups.map(group => (
             <div key={group._id} className="heading-section">
-              <h4><em><Link to={`/groups/${group._id}`} style={{ color: 'inherit' }}>{group.name}</Link></em></h4>
+              <h4>
+                <em>
+                  <span
+                    style={{ color: 'inherit', cursor: 'pointer' }}
+                    onClick={() => handleGroupClick(group._id)}
+                  >
+                    {group.name}
+                  </span>
+                </em>
+              </h4>
               <div className="row">
                 {Array.isArray(group.events) && group.events.map(eventId => {
                   const event = getEventDetails(eventId);
@@ -122,26 +147,33 @@ function ForumGroup() {
           </form>
         </div>
         <div className="invite-users">
+        <br />
           <h2>Invite Users</h2>
-          <select onChange={(e) => setSelectedGroupId(e.target.value)} value={selectedGroupId}>
-            <option value="">Select Group</option>
-            {userGroups.map(group => (
-              <option key={group._id} value={group._id}>{group.name}</option>
-            ))}
-          </select>
           <form onSubmit={handleInvite}>
+            <select onChange={(e) => setSelectedGroupId(e.target.value)} value={selectedGroupId}>
+              <option value="">Select Group</option>
+              {userGroups.map(group => (
+                <option key={group._id} value={group._id}>{group.name}</option>
+              ))}
+            </select>
             <input
               type="text"
               placeholder="Enter username"
               value={inviteUsername}
               onChange={(e) => setInviteUsername(e.target.value)}
             />
-            <div className="main-border-button" style={{ margin: '2%' }}>
-              <button type="submit">Invite</button>
-            </div>
+            <button type="submit">Invite</button>
           </form>
         </div>
       </div>
+      <Popup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)}>
+        <h2>Group Members</h2>
+        <ul>
+          {selectedGroupMembers.map(member => (
+            <li key={member._id}>{member.username}</li>
+          ))}
+        </ul>
+      </Popup>
     </div>
   );
 }

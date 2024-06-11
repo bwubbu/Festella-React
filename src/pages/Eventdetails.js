@@ -51,7 +51,7 @@ function EventDetails() {
     try {
       const response = await axios.get('http://localhost:5000/api/groups');
       const allGroups = response.data;
-      const userGroups = allGroups.filter(group => group.members.includes(user.userId));
+      const userGroups = allGroups.filter(group => group.members.includes(user.userId || user._id));
       setGroups(allGroups);
       setUserGroups(userGroups);
       console.log('All groups:', allGroups);
