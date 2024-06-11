@@ -29,6 +29,7 @@ function EventDetails() {
     const fetchEvent = async () => {
       try {
         const response = await getEventById(eventId);
+        console.log('Event details:', response.data); // Log the fetched event details
         setEventDetails(response.data);
         setLoading(false);
       } catch (error) {
@@ -126,14 +127,24 @@ function EventDetails() {
     images,
     videoLink,
     description,
-    eventDate,
+    date, // Use the correct field name from the MongoDB document
     isFinished,
     ticketSold = 0,
     totalTicket = 1000000,
   } = eventDetails;
 
   const percentageSold = (ticketSold / totalTicket) * 100;
-  const isEventPassed = new Date(eventDate) < new Date();
+  const isEventPassed = new Date(date) < new Date(); // Use the correct field name
+
+  const formattedEventDate = !isNaN(Date.parse(date)) 
+    ? new Date(date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    : 'Invalid Date';
+
+  console.log('Formatted Event Date:', formattedEventDate); // Log the formatted date
 
   return (
     <div className="event-details-container">
@@ -159,6 +170,7 @@ function EventDetails() {
             <ul>
               <li><i className="fa fa-star"></i> {rating}</li>
               <li><i className="fa fa-ticket"></i> {downloads}</li>
+              <li><i className="fa fa-calendar"></i> {formattedEventDate}</li>
             </ul>
           </div>
         </div>
