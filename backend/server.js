@@ -41,7 +41,7 @@ app.use('/events', eventRoutes);
 app.use('/posts', forumRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/', uploadRoutes);
-app.use('/payment', paymentRoutes);
+app.use('/api', paymentRoutes);
 app.use("/reviews", reviewRoutes);
 
 app.listen(PORT, () => {
