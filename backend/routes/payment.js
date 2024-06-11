@@ -38,7 +38,7 @@ router.post("/stripe-payment", async (req, res) => {
       from: process.env.EMAIL_USER,
       to: email,
       subject: 'Payment Confirmation',
-      text: `Your payment of MYR ${amount} was successful. Thank you for your purchase!`
+      text: `Your payment of MYR ${amount} was successful. Thank you for your purchase! Don't forget to review the event!`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
