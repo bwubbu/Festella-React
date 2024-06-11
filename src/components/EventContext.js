@@ -5,6 +5,7 @@ import { getTopEvents, getEvents } from '../api/api';
 export const EventContext = createContext();
 
 export const EventProvider = ({ children }) => {
+  const [currentEvent, setCurrentEvent] = useState('');
   const [topEvents, setTopEvents] = useState([]);
   const [allEvents, setAllEvents] = useState([]);
   const [pastEvents, setPastEvents] = useState([]);
@@ -37,11 +38,14 @@ export const EventProvider = ({ children }) => {
     fetchAllEvents();
   }, []);
 
+  const setCurrentEventId = (eventId) => {
+    setCurrentEvent(eventId);
+  };
+
   return (
-    <EventContext.Provider value={{ topEvents, allEvents, pastEvents }}>
+    <EventContext.Provider value={{ currentEvent, topEvents, allEvents, pastEvents, setCurrentEventId }}>
       {children}
     </EventContext.Provider>
   );
 };
-
 export const useEvent = () => useContext(EventContext);

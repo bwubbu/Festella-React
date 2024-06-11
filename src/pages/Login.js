@@ -70,7 +70,7 @@ function Login() {
 
   return (
     <div className='page-content'>
-      <div className='page-container' ref={containerRef}>
+      <div className='login-page-container' ref={containerRef}>
         <div className='forms-container'>
           <div className='signin-signup'>
             <form action="#" className="sign-in-form" onSubmit={handleLogin}>

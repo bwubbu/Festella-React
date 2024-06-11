@@ -12,6 +12,8 @@ import {
   formatExpirationDate,
 } from "../components/cardUtils"; // Corrected path
 import axios from "axios";
+import { useAuth } from "../components/AuthContext";
+import { useEvent } from "../components/EventContext";
 
 axios.defaults.baseURL = "/api";
 
@@ -19,6 +21,8 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function PaymentF() { // Renamed function to PaymentF
   const navigate = useNavigate();
+  const { user, updateUser } = useAuth();
+  const { currentEvent } = useEvent();
 
   useEffect(() => {
     if (!window.document.getElementById("stripe-script")) {
@@ -34,6 +38,25 @@ function PaymentF() { // Renamed function to PaymentF
       window.document.body.appendChild(s);
     }
   }, []);
+
+  const registerEvent = async () => {
+    const updatedUser = {
+      ...user,
+      profile: {
+        ...user.profile,
+        registeredEvents: [...user.profile.registeredEvents, currentEvent],
+        bookmarkedEvents: [...user.profile.bookmarkedEvents],
+      },
+    };
+
+    try {
+      await updateUser(updatedUser);
+      toast.success("Event registered successfully");
+    } catch (error) {
+      console.error("Failed to update user", error);
+      toast.error("Failed to register event");
+    }
+  }
 
   const onSubmit = async (values) => {
     await sleep(300);
@@ -56,7 +79,10 @@ function PaymentF() { // Renamed function to PaymentF
               })
               .then((res) => {
                 toast.success("Payment successful!", {
-                  onClose: () => navigate('/') // Redirect to Home.js on success
+                  onClose: () => {
+                    registerEvent();
+                    navigate('/') // Redirect to Home.js on success
+                  }
                 });
               })
               .catch((err) => {

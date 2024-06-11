@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../model/user');
+const { Profile, User } = require('../model/user');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -52,39 +52,30 @@ router.put('/edit', async (req, res) => {
     }
 });
 
-// Bookmark an event
-router.post('/bookmark/:eventId', async (req, res) => {
-    const { eventId } = req.params;
-    const userId = req.body.userId; // Assumes user ID is sent in the body
-  
+router.put('/update', async (req, res) => {
+    const { id, updatedUser } = req.body;
     try {
-      const user = await User.findById(userId);
-      if (!user) return res.status(404).json({ message: 'User not found' });
-  
-      if (!user.profile.bookmarks.includes(eventId)) {
-        user.profile.bookmarks.push(eventId);
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        user.username = updatedUser.username || user.username;
+        user.email = updatedUser.email || user.email;
+
+        if (updatedUser.profile) {
+            user.profile.name = updatedUser.profile.name || user.profile.name;
+            user.profile.image = updatedUser.profile.image || user.profile.image;
+            user.profile.bookmarkedEvents = updatedUser.profile.bookmarkedEvents || user.profile.bookmarkedEvents;
+            user.profile.registeredEvents = updatedUser.profile.registeredEvents || user.profile.registeredEvents;
+        }
+
         await user.save();
-      }
-  
-      res.status(200).json(user.profile.bookmarks);
+        res.json(user);
     } catch (error) {
-      res.status(500).json({ message: 'Error bookmarking event', error });
+        res.status(500).json({ message: error.message });
     }
-  });
-  
-  // Get bookmarked events for a user
-  router.get('/bookmarks/:userId', async (req, res) => {
-    const { userId } = req.params;
-  
-    try {
-      const user = await User.findById(userId).populate('profile.bookmarks');
-      if (!user) return res.status(404).json({ message: 'User not found' });
-  
-      res.status(200).json(user.profile.bookmarks);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching bookmarks', error });
-    }
-  });
-  
+});
+
 
 module.exports = router;

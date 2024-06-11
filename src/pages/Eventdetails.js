@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { getEventById } from '../api/api';
 import { AuthContext } from '../components/AuthContext';
+import { useEvent } from '../components/EventContext';
 import '../styles/Events.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import ReviewList from '../components/ReviewList';
@@ -13,6 +14,7 @@ import CustomPopup from '../components/Popup';
 
 function EventDetails() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { eventId } = location.state || { eventId: 1 };
   const [eventDetails, setEventDetails] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -20,7 +22,8 @@ function EventDetails() {
   const [groups, setGroups] = useState([]);
   const [userGroups, setUserGroups] = useState([]);
   const [selectedGroupId, setSelectedGroupId] = useState('');
-  const { user } = useContext(AuthContext);
+  const { user, updateUser } = useContext(AuthContext);
+  const { setCurrentEventId } = useEvent();
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -60,26 +63,34 @@ function EventDetails() {
   const handleBookmark = async () => {
     if (!user) {
       alert('You need to sign in to bookmark events');
-      return;
-    }
-
-    try {
-      const response = await fetch(`/bookmark/${eventId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      navigate('/login');
+    } else {
+      const updatedUser = {
+        ...user,
+        profile: {
+          ...user.profile,
+          registeredEvents: [...user.profile.registeredEvents],
+          bookmarkedEvents: [...user.profile.bookmarkedEvents, eventId],
         },
-        body: JSON.stringify({ userId: user._id }),
-        credentials: 'include',
-      });
+      }
 
-      if (response.ok) {
+      try {
+        await updateUser(updatedUser);
         alert('Event bookmarked successfully');
-      } else {
+      } catch (error) {
+        console.error('Failed to update user', error);
         alert('Failed to bookmark event');
       }
-    } catch (error) {
-      console.error('Error bookmarking event:', error);
+    }
+  };
+
+  const handleRSVP = () => {
+    if (!user) {
+      alert('You need to sign in to buy the ticket!');
+      navigate('/login');
+    } else {
+      setCurrentEventId(eventId);
+      navigate('/rsvpp');
     }
   };
 
@@ -165,14 +176,23 @@ function EventDetails() {
                 </div>
               </div>
               <div className="main-border-button">
-                <Link to="/rsvpp">Buy the ticket now!</Link>
+                <button onClick={handleRSVP}>Buy the ticket now!</button>
               </div>
               <div className="side-by-side-buttons">
                 <div className="main-border-button">
-                  <button onClick={handleBookmark}>Bookmark Event</button>
+                  {user && user.profile && user.profile.bookmarkedEvents.includes(eventId) ? (
+                    <p>Event Added to Bookmark</p>
+                  ) : (
+                    <button onClick={handleBookmark}>Bookmark Event</button>
+                  )}
                 </div>
                 <div className="main-border-button">
                   <Share description={"Check out this event on Festella!"}></Share>
+                </div>
+                <div className="main-border-button">
+                  <button onClick={() => {
+                    setIsPopupOpen(true);
+                  }}>Add to Group</button><Share description={"Check out this event on Festella!"}></Share>
                 </div>
                 <div className="main-border-button">
                   <button onClick={() => {
