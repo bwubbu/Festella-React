@@ -10,10 +10,11 @@ const profileSchema = new mongoose.Schema({
 const Profile = mongoose.model('Profile', profileSchema);
 
 const userSchema = new mongoose.Schema({
-    username: String,
-    email: String,
-    password: String,
-    profile: { type: profileSchema, default: {} }
+  username: String,
+  email: String,
+  password: String,
+  profile: { type: profileSchema, default: {} },
+  groups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Group' }]
 });
 
 const User = mongoose.model('User', userSchema);

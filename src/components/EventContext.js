@@ -48,5 +48,4 @@ export const EventProvider = ({ children }) => {
     </EventContext.Provider>
   );
 };
-
 export const useEvent = () => useContext(EventContext);

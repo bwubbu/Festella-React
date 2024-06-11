@@ -34,6 +34,7 @@ function NavBar() {
         <div className='hiddenLinks'>
           <NavLink exact="true" to="/" activeclassname="active">Home</NavLink>
           <NavLink to='/browse' activeclassname="active">Browse</NavLink>
+          <NavLink to="/forum" activeclassname="active">Community</NavLink>
           <NavLink to="/vendor" activeclassname="active">Vendor</NavLink>
           {isAuthenticated ? (
             <NavLink to="/profile" activeclassname="active">Profile</NavLink>
@@ -45,6 +46,7 @@ function NavBar() {
       <div className='rightSide'>
         <NavLink exact="true" to="/" activeclassname="active">Home</NavLink>
         <NavLink to='/browse' activeclassname="active">Browse</NavLink>
+        <NavLink to="/forum" activeclassname="active">Community</NavLink>
         <NavLink to="/vendor" activeclassname="active">Vendor</NavLink>
         {isAuthenticated && user ? (
           <div className='profile-dropdown'>

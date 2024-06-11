@@ -7,6 +7,10 @@ import '../styles/Events.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import ReviewList from '../components/ReviewList';
 import ReviewForm from '../components/ReviewForm';
+import '../styles/share.css';
+import Share from '../components/Share';
+import axios from 'axios';
+import CustomPopup from '../components/Popup';
 
 function EventDetails() {
   const location = useLocation();
@@ -14,6 +18,10 @@ function EventDetails() {
   const { eventId } = location.state || { eventId: 1 };
   const [eventDetails, setEventDetails] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [groups, setGroups] = useState([]);
+  const [userGroups, setUserGroups] = useState([]);
+  const [selectedGroupId, setSelectedGroupId] = useState('');
   const { user, updateUser } = useContext(AuthContext);
   const { setCurrentEventId } = useEvent();
 
@@ -31,6 +39,26 @@ function EventDetails() {
 
     fetchEvent();
   }, [eventId]);
+
+  useEffect(() => {
+    if (user) {
+      fetchGroups();
+    }
+  }, [user]);
+
+  const fetchGroups = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/groups');
+      const allGroups = response.data;
+      const userGroups = allGroups.filter(group => group.members.includes(user.userId));
+      setGroups(allGroups);
+      setUserGroups(userGroups);
+      console.log('All groups:', allGroups);
+      console.log('User groups:', userGroups);
+    } catch (error) {
+      console.error('Error fetching groups:', error.message);
+    }
+  };
 
   const handleBookmark = async () => {
     if (!user) {
@@ -63,6 +91,22 @@ function EventDetails() {
     } else {
       setCurrentEventId(eventId);
       navigate('/rsvpp');
+    }
+  };
+
+  const handleAddToGroup = async () => {
+    if (!selectedGroupId) {
+      alert('Please select a group first.');
+      return;
+    }
+
+    try {
+      await axios.post(`http://localhost:5000/api/groups/${selectedGroupId}/addEvent`, { eventId });
+      alert('Event added to group successfully');
+      setIsPopupOpen(false);
+    } catch (error) {
+      console.error('Failed to add event to group', error);
+      alert('Failed to add event to group. Please try again.');
     }
   };
 
@@ -143,7 +187,17 @@ function EventDetails() {
                   )}
                 </div>
                 <div className="main-border-button">
-                  <button>Share the event</button>
+                  <Share description={"Check out this event on Festella!"}></Share>
+                </div>
+                <div className="main-border-button">
+                  <button onClick={() => {
+                    setIsPopupOpen(true);
+                  }}>Add to Group</button><Share description={"Check out this event on Festella!"}></Share>
+                </div>
+                <div className="main-border-button">
+                  <button onClick={() => {
+                    setIsPopupOpen(true);
+                  }}>Add to Group</button>
                 </div>
               </div>
             </div>
@@ -155,6 +209,21 @@ function EventDetails() {
           </div>
         </div>
       </div>
+
+      <CustomPopup
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      >
+        <h2>Select Group</h2>
+        <select onChange={(e) => setSelectedGroupId(e.target.value)} value={selectedGroupId}>
+          <option value="">Select Group</option>
+          {userGroups.map(group => (
+            <option key={group._id} value={group._id}>{group.name}</option>
+          ))}
+        </select>
+        <button onClick={handleAddToGroup}>Add to Group</button>
+        <button onClick={() => setIsPopupOpen(false)}>Cancel</button>
+      </CustomPopup>
     </div>
   );
 }

@@ -9,6 +9,8 @@ const vendorRoutes = require('./routes/vendorRoutes');
 const userRoutes = require('./routes/userRoutes');
 const eventRoutes = require('./routes/eventroutes');
 const uploadRoutes = require('./routes/upload');
+const forumRoutes = require('./routes/forumRoutes');
+const groupRoutes = require('./routes/groupRoutes');
 const paymentRoutes = require('./routes/payment');
 
 const app = express();
@@ -35,6 +37,8 @@ app.use('/rsvps', rsvpsRouter);
 app.use('/vendors', vendorRoutes);
 app.use('/user', userRoutes);
 app.use('/events', eventRoutes);
+app.use('/posts', forumRoutes);
+app.use('/api/groups', groupRoutes);
 app.use('/', uploadRoutes);
 app.use('/payment', paymentRoutes);
 
