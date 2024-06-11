@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   const rsvp = new RSVP({
     name: req.body.name,
-    dietaryRequirements: req.body.dietaryRequirements
+    Event: req.body.dietaryRequirements
   });
 
   try {
