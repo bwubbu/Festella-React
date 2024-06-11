@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getEventById } from '../api/api';
 import { AuthContext } from '../components/AuthContext';
 import { useEvent } from '../components/EventContext';
@@ -143,7 +143,7 @@ function EventDetails() {
                   )}
                 </div>
                 <div className="main-border-button">
-                  <a href="#">Share the event</a>
+                  <button>Share the event</button>
                 </div>
               </div>
             </div>
