@@ -31,15 +31,16 @@
     "react-toastify": "^10.0.5",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.11",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "cleanServer": "cd ./backend && npm run clean",
+    "cleanClient": "npx rimraf ./node_modules && npx rimraf ./package-lock.json",
+    "clean": "concurrently \"npm run cleanServer\" \"npm run cleanClient\"",
     "serverDependencies": "cd ./backend && npm i",
-    "dependencies": "concurrently \"npm i\" \"npm run serverDependencies\"",
+    "dependencies": "npm install concurrently && concurrently \"npm i\" \"npm run serverDependencies\"",
     "server": "cd ./backend && npm run server",
     "dev": "concurrently \"npm start\" \"npm run server\""
   },
