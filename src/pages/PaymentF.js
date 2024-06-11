@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import '../styles/toastify-custom.css';
+import '../styles/Toastify.css';
 import Styles from "../components/Styles"; // Corrected path
 import { Form, Field } from "react-final-form";
 import Card from "../components/Card"; // Corrected path
