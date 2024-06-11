@@ -29,7 +29,7 @@ function Profile() {
       fetchRegisteredEvents();
       fetchBookmarkedEvents();
     }
-  }, []);
+  }, [allEvents, user]);
 
   return (
     <div className="page-content">
