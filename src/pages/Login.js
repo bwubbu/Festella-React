@@ -111,8 +111,8 @@ function Login() {
           </div>
         </div>
         <div className="panels-container">
-          <div className="panel left-panel">
-            <div className="content">
+          <div className="panels left-panel">
+            <div className="contents">
               <h3>New here ?</h3>
               <p>
                 Register Now To Unlock All Features Of Our Website!
@@ -124,8 +124,8 @@ function Login() {
               </button>
             </div>
           </div>
-          <div className="panel right-panel">
-            <div className="content">
+          <div className="panels right-panel">
+            <div className="contents">
               <h3>One of us ?</h3>
               <p>
                 Sign in to access your account and pick up where you left off!

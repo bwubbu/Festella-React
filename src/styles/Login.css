@@ -162,7 +162,7 @@ body, input {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 
-    .panel {
+    .panels {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
@@ -170,7 +170,7 @@ body, input {
       text-align: center;
       z-index: 6;
 
-      .content {
+      .contents {
         color: #fff;
         transition: transform 0.9s ease-in-out;
         transition-delay: 0.6s;
@@ -212,7 +212,7 @@ body, input {
       pointer-events: none;
       padding: 3rem 12% 2rem 17%;
 
-      .image, .content {
+      .image, .contents {
         transform: translateX(800px);
       }
     }
@@ -230,7 +230,7 @@ body, input {
   .left-panel {
     pointer-events: none;
 
-    .image, .content {
+    .image, .contents {
       transform: translateX(-800px);
     }
   }
@@ -238,7 +238,7 @@ body, input {
   .right-panel {
     pointer-events: all;
 
-    .image, .content {
+    .image, .contents {
       transform: translateX(0%);
     }
   }
@@ -280,7 +280,7 @@ body, input {
     grid-template-rows: 1fr 2fr 1fr;
   }
 
-  .panel {
+  .panels {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -302,17 +302,17 @@ body, input {
     transition-delay: 0.6s;
   }
 
-  .panel .content {
+  .panels .contents {
     padding-right: 15%;
     transition: transform 0.9s ease-in-out;
     transition-delay: 0.8s;
   }
 
-  .panel h3 {
+  .panels h3 {
     font-size: 1.2rem;
   }
 
-  .panel p {
+  .panels p {
     font-size: 0.7rem;
     padding: 0.5rem 0;
   }
@@ -341,18 +341,18 @@ body, input {
   }
 
   .login-page-container.sign-up-mode .left-panel {
-    .image, .content {
+    .image, .contents {
       transform: translateY(-300px);
     }
   }
 
   .login-page-container.sign-up-mode .right-panel {
-    .image, .content {
+    .image, .contents {
       transform: translateY(0px);
     }
   }
 
-  .right-panel .image, .right-panel .content {
+  .right-panel .image, .right-panel .contents {
     transform: translateY(300px);
   }
 
@@ -370,7 +370,7 @@ body, input {
   .image {
     display: none;
   }
-  .panel .content {
+  .panels .contents {
     padding: 0.5rem 1rem;
   }
   .container {
