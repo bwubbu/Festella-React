@@ -42,11 +42,27 @@ router.post('/register', async (req, res) => {
 });
 
 router.put('/edit', async (req, res) => {
+    const { id, updatedUser } = req.body;
     try {
-        const user = await User.findById(req.user.id);
-        user.username = req.body.username;
-        user.profile.name = req.body.name;
-        user.profile.image = req.body.image;
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        user.username = updatedUser.username || user.username;
+        user.email = user.email;
+        if (updatedUser.password) {
+            const hash = await bcrypt.hash(updatedUser.password, saltRounds);
+            if (hash !== user.password) {
+                user.password = hash;
+            }
+        }
+        if (updatedUser.profile) {
+            user.profile.name = updatedUser.profile.name || user.profile.name;
+            user.profile.image = updatedUser.profile.image || user.profile.image;
+            user.profile.bookmarkedEvents = user.profile.bookmarkedEvents;
+            user.profile.registeredEvents = user.profile.registeredEvents;
+        }
         await user.save();
         res.status(200).json(user);
     } catch (error) {

@@ -4,33 +4,38 @@ import "../App.css";
 import "../styles/Profile.css";
 import { useAuth } from "../components/AuthContext";
 
+
 function EditProfile() {
   const { user, editProfile } = useAuth();
   const navigate = useNavigate();
-  const [userData, setUserData] = useState(user ? {
-    id: user._id,
-    name: user.profile.name,
+  const [userData, setUserData] = useState({
+    _id: user._id,
     username: user.username,
+    email: user.email,
     password: '',
-    image: user.profile.image,
-  } : {
-    id: '',
-    name: '',
-    username: '',
-    password: '',
-    image: ''
+    profile: {
+      name: user.profile.name || '',
+      image: user.profile.image || '',
+      bookmarkedEvents: user.profile.bookmarkedEvents || [],
+      registeredEvents: user.profile.registeredEvents || []
+    }
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserData(prev => ({ ...prev, [name]: value }));
+    if (name.startsWith('profile.')) {
+      const child = name.split('.')[1];
+      setUserData(prev => ({ ...prev, profile: { ...prev.profile, [child]: value } }));
+    } else {
+      setUserData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleImage = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.onloadend = () => {
-      setUserData(prev => ({ ...prev, image: reader.result }));
+      setUserData(prev => ({ ...prev, profile: { ...prev.profile, image: reader.result } }));
     };
     reader.readAsDataURL(file);
   };
@@ -59,27 +64,27 @@ function EditProfile() {
           <div className="form-row">
             <div>
               <label htmlFor="name">Name</label>
-              <input type="text" id="name" name="name" required placeholder="Name" onChange={handleChange} />
+              <input type="text" id="profile.name" name="profile.name" placeholder="Name" value={userData.profile.name} onChange={handleChange} />
             </div>
             <div>
               <label htmlFor="username">Username</label>
-              <input type="text" id="username" name="username" required placeholder="Username" onChange={handleChange} />
+              <input type="text" id="username" name="username" placeholder="Username" value={userData.username} onChange={handleChange} />
             </div>
           </div>
           <div className="form-row">
             <div>
               <label htmlFor="password">Password</label>
-              <input type="password" id="password" name="password" required placeholder="Password" onChange={handleChange} />
+              <input type="password" id="password" name="password" placeholder="Password" value={userData.password} onChange={handleChange} />
             </div>
             <div>
               <label htmlFor="password">Confirm Password</label>
-              <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm Password" onChange={handleChange} />
+              <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} />
             </div>
           </div>
           <div className="form-row">
             <div>
               <label htmlFor="image">Profile Picture</label>
-              <input type="file" id="image" name="image" placeholder="Profile Picture" onChange={handleImage} />
+              <input type="file" id="image" name="profile.image" placeholder="Profile Picture" onChange={handleImage} />
             </div>
           </div>
           <button type="submit">Update Profile</button>

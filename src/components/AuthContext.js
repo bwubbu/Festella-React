@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
 
   const editProfile = async (user) => {
     try {
-      const response = await axios.put(`${process.env.REACT_APP_API_URL}/user/edit`, user, { withCredentials: true });
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/user/edit`, { id: user._id, updatedUser: user }, { withCredentials: true });
       setUser(response.data);
     } catch (error) {
       console.error('Error editing profile', error);
