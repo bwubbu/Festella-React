@@ -11,7 +11,8 @@ class RSVPP extends Component {
     showConfirmScreen: false,
     toggleRsvps: false,
     toggleIcon: "⊕",
-    rsvps: [],
+    rsvps: [], // All RSVP data
+    confirmedRsvps: [], // Only confirmed RSVPs
     filteredEvents: [],
     errorMessage: ''
   }
@@ -41,9 +42,10 @@ class RSVPP extends Component {
   }
 
   onConfirm = () => {
-    const { rsvps, pendingRsvp } = this.state;
+    const { rsvps, confirmedRsvps, pendingRsvp } = this.state;
     this.setState({
       rsvps: [...rsvps, pendingRsvp],
+      confirmedRsvps: [...confirmedRsvps, pendingRsvp],
       showConfirmScreen: false,
       pendingRsvp: null,
       errorMessage: ''
@@ -58,7 +60,7 @@ class RSVPP extends Component {
   }
 
   render() {
-    const { showConfirmScreen, toggleRsvps, toggleIcon, rsvps, errorMessage, pendingRsvp } = this.state;
+    const { showConfirmScreen, toggleRsvps, toggleIcon, rsvps, confirmedRsvps, errorMessage, pendingRsvp } = this.state;
 
     const view = showConfirmScreen ? (
       <ConfirmScreen
@@ -76,8 +78,8 @@ class RSVPP extends Component {
     );
 
     const rsvpsList = toggleRsvps && (
-      rsvps.length ? (
-        <ul>{rsvps.map((r) => <li key={r._id}>{r.name}, {r.dietaryRequirements}</li>)}</ul>
+      confirmedRsvps.length ? (
+        <ul>{confirmedRsvps.map((r) => <li key={r._id}>{r.name}, {r.dietaryRequirements}</li>)}</ul>
       ) : (
         <p>No upcoming events</p>
       )
