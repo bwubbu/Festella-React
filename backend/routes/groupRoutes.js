@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Group = require('../model/group');
-const { User } = require('../model/user'); // Correct import
-
+const { profile, User } = require('../model/user');
+const Event = require('../model/event');
 // Fetch groups for a user
 router.get('/:userId', async (req, res) => {
   try {
