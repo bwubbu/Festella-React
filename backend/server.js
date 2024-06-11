@@ -12,6 +12,7 @@ const uploadRoutes = require('./routes/upload');
 const forumRoutes = require('./routes/forumRoutes');
 const groupRoutes = require('./routes/groupRoutes');
 const paymentRoutes = require('./routes/payment');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -41,6 +42,7 @@ app.use('/posts', forumRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/', uploadRoutes);
 app.use('/payment', paymentRoutes);
+app.use("/reviews", reviewRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
