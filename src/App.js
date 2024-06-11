@@ -4,6 +4,7 @@ import { AuthProvider } from './components/AuthContext';
 import { VendorProvider } from './components/VendorContext';
 import { EventProvider } from './components/EventContext';
 import { ForumProvider } from './components/ForumContext';
+import { ReviewProvider } from './components/ReviewContext';
 
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
@@ -24,6 +25,7 @@ function App() {
       <AuthProvider>
         <VendorProvider>
           <EventProvider>
+            <ReviewProvider>
             <Router>
               <NavBar />
               <div className='container'>
@@ -49,6 +51,7 @@ function App() {
               </div>
               <Footer />
             </Router>
+          </ReviewProvider>
           </EventProvider>
         </VendorProvider>
       </AuthProvider>

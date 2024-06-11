@@ -1,63 +1,47 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useContext } from 'react';
 import '../styles/ReviewForm.css';
+import { useReviews } from '../components/ReviewContext';
+import { AuthContext } from '../components/AuthContext';
 
 const ReviewForm = ({ eventId }) => {
-  const [rating, setRating] = useState(0);
-  const [hoveredRating, setHoveredRating] = useState(0);
-  const [reviewText, setReviewText] = useState('');
-  const [images, setImages] = useState([]);
-  const [videos, setVideos] = useState([]);
+  const { addReview } = useReviews();
+  const { user } = useContext(AuthContext);
+  const [reviewForm, setReviewForm] = useState({
+    rating: 0,
+    comment: '',
+    images: []
+  });
 
-  const handleRatingClick = (rate) => {
-    setRating(rate);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setReviewForm({ ...reviewForm, [name]: value });
   };
 
-  const handleMouseEnter = (index) => {
-    setHoveredRating(index + 1);
+  const handleImage = (e) => {
+    setReviewForm({ ...reviewForm, images: e.target.files });
   };
 
-  const handleMouseLeave = () => {
-    setHoveredRating(0);
-  };
-
-  const uploadFile = async (file) => {
-    const formData = new FormData();
-    formData.append('file', file);
-
-    try {
-      const response = await axios.post('/api/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      return response.data.fileUrl;
-    } catch (error) {
-      console.error('Error uploading file:', error);
-      return null;
-    }
+  const handleRatingClick = (rating) => {
+    setReviewForm({ ...reviewForm, rating });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const imageUrls = await Promise.all(images.map(image => uploadFile(image)));
-    const videoUrls = await Promise.all(videos.map(video => uploadFile(video)));
-
-    const newReview = {
-      eventId,
-      username: 'New User', // Replace with actual username from auth system
-      rating,
-      images: imageUrls,
-      videos: videoUrls,
-      comments: [reviewText],
-      date: new Date().toISOString().split('T')[0],
-    };
-
+    const formData = new FormData();
+    formData.append('eventId', eventId);
+    formData.append('username', user.username);
+    formData.append('rating', reviewForm.rating);
+    formData.append('comment', reviewForm.comment);
+    for (const image of reviewForm.images) {
+      formData.append('images', image);
+    }
     try {
-      await axios.post('/api/reviews', newReview);
-      // Handle successful submission
+      await addReview(formData);
+      alert('Review submitted successfully!');
+      console.log('Review submitted successfully!');
+      setReviewForm({ rating: 0, comment: '', images: [] });
     } catch (error) {
+      alert('Failed to submit review. Please try again.');
       console.error('Error submitting review:', error);
     }
   };
@@ -71,30 +55,30 @@ const ReviewForm = ({ eventId }) => {
           <p>Rating:</p>
         </label>
         <div className="rating-container">
-          <h1>{rating}</h1>
+          <h1>{reviewForm.rating}</h1>
           <div className="stars">
             {[...Array(5)].map((_, index) => (
               <span
                 key={index}
                 onClick={() => handleRatingClick(index + 1)}
-                onMouseEnter={() => handleMouseEnter(index)}
-                onMouseLeave={handleMouseLeave}
-                className={`fa fa-star ${rating > index || hoveredRating > index ? 'checked' : ''}`}
+                onMouseEnter={() => setReviewForm({ ...reviewForm, hoveredRating: index + 1 })}
+                onMouseLeave={() => setReviewForm({ ...reviewForm, hoveredRating: 0 })}
+                className={`fa fa-star ${reviewForm.rating > index || reviewForm.hoveredRating > index ? 'checked' : ''}`}
               ></span>
             ))}
           </div>
         </div>
         <br />
-        <label htmlFor="review">
+        <label htmlFor="comment">
           <p>Review:</p>
         </label>
         <textarea
           id="review-text"
-          name="review"
+          name="comment"
           rows="4"
           required
-          value={reviewText}
-          onChange={(e) => setReviewText(e.target.value)}
+          value={reviewForm.comment}
+          onChange={handleChange}
         />
         <br />
         <br />
@@ -107,25 +91,12 @@ const ReviewForm = ({ eventId }) => {
           name="images"
           accept="image/*"
           multiple
-          onChange={(e) => setImages([...e.target.files])} // Updated
-        />
-        <br />
-        <br />
-        <label htmlFor="videos" className="label">
-          <p>Upload Videos:</p>
-        </label>
-        <input
-          type="file"
-          id="videos"
-          name="videos"
-          accept="video/*"
-          multiple
-          onChange={(e) => setVideos([...e.target.files])} // Updated
+          onChange={handleImage}
         />
         <br />
         <br />
         <button type="submit" className="submit">
-          Submit Review
+          <p>Submit Review</p>
         </button>
       </form>
     </section>
