@@ -8,7 +8,7 @@ const AllEvents = () => {
     const navigate = useNavigate();
     const { allEvents } = useContext(EventContext);
     const [currentPage, setCurrentPage] = useState(1);
-    const eventsPerPage = 18;
+    const eventsPerPage = 12;
 
     if (!allEvents || allEvents.length === 0) {
         return <div>No events available</div>;

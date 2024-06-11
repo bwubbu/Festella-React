@@ -24,9 +24,9 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Events.css';
 
 const images = [
-  require('../assets/2mkzw2cizeob1.jpg'),
-  require('../assets/image2.png'),
-  require('../assets/image3.jpeg'),
+  require('../assets/Coldplay_banner.jpg'),
+  require('../assets/Ed_banner.jpeg'),
+  require('../assets/Holo_banner.png'),
 ];
 
 function Home() {

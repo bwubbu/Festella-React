@@ -14,13 +14,14 @@ export const EventProvider = ({ children }) => {
     const fetchTopEvents = async () => {
       try {
         const response = await getTopEvents();
+        console.log('Top Events Response:', response); // Log the response
         const activeEvents = response.data.filter(event => !event.isFinished && new Date(event.date) > new Date());
         setTopEvents(activeEvents);
       } catch (error) {
         console.error('Error fetching top events:', error);
       }
     };
-
+  
     const fetchAllEvents = async () => {
       try {
         const response = await getEvents();
@@ -33,10 +34,11 @@ export const EventProvider = ({ children }) => {
         console.error('Error fetching all events:', error);
       }
     };
-
+  
     fetchTopEvents();
     fetchAllEvents();
   }, []);
+  
 
   const setCurrentEventId = (eventId) => {
     setCurrentEvent(eventId);

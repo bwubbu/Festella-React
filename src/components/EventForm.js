@@ -1,9 +1,10 @@
-// frontend/src/components/EventForm.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import axios from 'axios';
 import '../styles/Events.css';
 
 const EventForm = () => {
+  const navigate = useNavigate(); // Initialize useNavigate hook
   const [eventData, setEventData] = useState({
     name: '',
     category: '',
@@ -68,6 +69,7 @@ const EventForm = () => {
       await axios.post('http://localhost:5000/events', newEvent);
 
       alert('Event added successfully');
+      navigate('/'); // Redirect to home page
     } catch (error) {
       console.error('Error adding event:', error);
       const errorMessage = error.response ? error.response.data.message : error.message;
@@ -95,6 +97,8 @@ const EventForm = () => {
             <option value="Festival">Festival</option>
             <option value="Conference">Conference</option>
             <option value="Workshop">Workshop</option>
+            <option value="Sport">Sport</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div>

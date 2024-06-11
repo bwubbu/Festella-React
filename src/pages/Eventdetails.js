@@ -126,11 +126,14 @@ function EventDetails() {
     images,
     videoLink,
     description,
+    eventDate,
+    isFinished,
     ticketSold = 0,
     totalTicket = 1000000,
   } = eventDetails;
 
   const percentageSold = (ticketSold / totalTicket) * 100;
+  const isEventPassed = new Date(eventDate) < new Date();
 
   return (
     <div className="event-details-container">
@@ -176,7 +179,7 @@ function EventDetails() {
                 </div>
               </div>
               <div className="main-border-button">
-                <button onClick={handleRSVP}>Buy the ticket now!</button>
+                <button onClick={handleRSVP} disabled={isEventPassed || isFinished}>Buy the ticket now!</button>
               </div>
               <div className="side-by-side-buttons">
                 <div className="main-border-button">
@@ -188,11 +191,6 @@ function EventDetails() {
                 </div>
                 <div className="main-border-button">
                   <Share description={"Check out this event on Festella!"}></Share>
-                </div>
-                <div className="main-border-button">
-                  <button onClick={() => {
-                    setIsPopupOpen(true);
-                  }}>Add to Group</button><Share description={"Check out this event on Festella!"}></Share>
                 </div>
                 <div className="main-border-button">
                   <button onClick={() => {

@@ -17,7 +17,7 @@ function Share({ description }) {
 
   return (
     <>
-      Share on:
+      Share on: 
       <div className="share-icon-collections">
         {/* Facebook */}
         <a

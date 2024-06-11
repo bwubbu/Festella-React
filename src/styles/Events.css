@@ -955,6 +955,12 @@
     font-weight: bold;
   }
 
+  .main-border-button button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
   
 
 /* Event Form Style */
